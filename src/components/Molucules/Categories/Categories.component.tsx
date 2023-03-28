@@ -2,17 +2,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { CategoryCard } from '../../Atoms/CategoryCard';
-
-const categories = [
-  {
-    title: "men's clothing",
-    link: 'mens-clothing',
-  },
-  {
-    title: "women's clothing",
-    link: 'womens-clothing',
-  },
-];
+import { categories } from '../../../config/config';
 
 const Categories = () => {
   return (

@@ -12,7 +12,7 @@ const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
     }
   };
   return (
-    <a href={`/${category.link}`} className='nav-link' style={{width: '100%'}}>
+    <a href={`categories/${category.link}`} className='nav-link' style={{width: '100%'}}>
       <Box
         width={1}
         height='200px'
