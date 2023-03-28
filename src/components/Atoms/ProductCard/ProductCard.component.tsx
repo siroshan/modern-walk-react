@@ -31,11 +31,12 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
       </Box>
       <Box
         bgcolor={getBgColor}
-        borderRadius='20px'
+        borderRadius='50px'
         p={2}
         position='absolute'
         bottom={0}
         width={1}
+        boxSizing='border-box'
       >
         <Stack direction='column' alignItems='center' spacing={1}>
           <Typography property='price' color='blue'>
@@ -44,13 +45,7 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
           <Typography
             property='description'
             textAlign='center'
-            sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: '4',
-              WebkitBoxOrient: 'vertical',
-            }}
+            className='prod-desc'
             fontSize={14}
             maxWidth={200}
           >
