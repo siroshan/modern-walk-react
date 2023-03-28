@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IProduct } from '../../../types/models/Product';
 import { ProductCardContainer } from '../../Molucules/ProductCardConatiner';
+import { Box } from '@mui/material';
+import { Categories } from '../../Molucules/Categories';
 
 const Home = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -16,10 +18,13 @@ const Home = () => {
       });
   }, []);
 
-  if (products?.length > 0) {
-    return <ProductCardContainer products={products} />;
-  }
-  return <h4>Loading</h4>;
+    return (
+      <Box width={1} maxWidth={1100} mx='auto' mt={4}>
+        {products.length > 0 &&  <ProductCardContainer products={products} />}
+        <Categories/>
+      </Box>
+    );
+  
 };
 
 export default Home;
