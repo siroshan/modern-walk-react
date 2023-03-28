@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import React, { FC } from 'react';
 import Typography from '@mui/material/Typography';
 
 const Logo = () => {
