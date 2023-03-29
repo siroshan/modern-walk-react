@@ -5,7 +5,7 @@ import { ProductCardContainer } from '../../ProductCardConatiner';
 import { Box } from '@mui/material';
 import { Categories } from '../../../Molucules/Categories';
 
-const Home = () => {
+const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   useEffect(() => {
     axios
@@ -31,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

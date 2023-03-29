@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import React from 'react';
-import { Logo } from '../../Molucules/Logo';
+import { FC, ReactNode } from 'react';
 
-const NavBar = () => {
+
+const NavBar: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Box
       width={1}
@@ -22,7 +22,7 @@ const NavBar = () => {
         mx='auto'
         maxWidth={1100}
       >
-        <Logo title='Modern Walk' link='/'/>
+        {children}
       </Stack>
     </Box>
   );
