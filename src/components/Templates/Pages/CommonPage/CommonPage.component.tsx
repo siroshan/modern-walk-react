@@ -6,7 +6,7 @@ import { categories } from '../../../../config/config';
 import { IProduct } from '../../../../types/models/Product';
 import { Loading } from '../../../Molucules/Loading';
 import { ProductCardContainer } from '../../ProductCardConatiner';
-import { SectionLayout } from '../../SectionLayout';
+import { SectionLayout } from '../../../Layouts/SectionLayout';
 
 const CommonPage = () => {
   const { cat } = useParams();

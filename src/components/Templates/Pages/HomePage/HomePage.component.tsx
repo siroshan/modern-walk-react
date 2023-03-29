@@ -4,7 +4,7 @@ import { IProduct } from '../../../../types/models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { SectionLayout } from '../../SectionLayout';
+import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { CategoryCard } from '../../../Molucules/CategoryCard';
 import { categories } from '../../../../config/config';
 import { Loading } from '../../../Molucules/Loading';
