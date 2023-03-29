@@ -3,7 +3,7 @@ import './styles/globals.scss';
 import { NavBarTemplate } from './components/Templates/NavBarTemplate';
 import { Routes, Route } from 'react-router-dom';
 import { HomePage } from './components/Templates/Pages/HomePage';
-import { Categories } from './components/Templates/Pages/Categories';
+import { CommonPage } from './components/Templates/Pages/CommonPage';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <NavBarTemplate />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/categories/:cat' element={<Categories />} />
+        <Route path='/categories/:cat' element={<CommonPage />} />
       </Routes>
     </>
   );

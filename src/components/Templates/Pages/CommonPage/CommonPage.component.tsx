@@ -1,13 +1,13 @@
-import Box from '@mui/material/Box';
-import { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Typography from '@mui/material/Typography';
-import { IProduct } from '../../../../types/models/Product';
 import { categories } from '../../../../config/config';
+import { IProduct } from '../../../../types/models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
+import { SectionLayout } from '../../SectionLayout';
 
-const Categories = () => {
+const CommonPage = () => {
   const { cat } = useParams();
   const category = categories.find((category) => category.link === cat);
 
@@ -16,7 +16,7 @@ const Categories = () => {
     axios
       .get(`https://fakestoreapi.com/products/category/${category?.title}`)
       .then((res) => {
-        setProducts(res.data);
+        setProducts(res.data);        
       })
       .catch((err) => {
         console.log('error', err);
@@ -24,11 +24,10 @@ const Categories = () => {
   }, []);
 
   return (
-    <Box width={1} maxWidth={1100} mx='auto' mt={4}>
-        <Typography variant='h4' textTransform='capitalize' mb={4}> {category?.title} </Typography>
+    <SectionLayout heading={category?.title || ''}>
       {products.length > 0 && <ProductCardContainer products={products} />}
-    </Box>
+    </SectionLayout>
   );
 };
 
-export default Categories;
+export default CommonPage;
