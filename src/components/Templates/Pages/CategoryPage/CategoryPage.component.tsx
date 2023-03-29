@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -7,8 +6,9 @@ import { IProduct } from '../../../../types/models/Product';
 import { Loading } from '../../../Molucules/Loading';
 import { ProductCardContainer } from '../../ProductCardConatiner';
 import { SectionLayout } from '../../../Layouts/SectionLayout';
+import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 
-const CommonPage = () => {
+const CategoryPage = () => {
   const { cat } = useParams();
   const category = categories.find((category) => category.link === cat);
 
@@ -25,7 +25,7 @@ const CommonPage = () => {
   }, []);
 
   return (
-    <Box width={1} maxWidth={1100} mx='auto'>
+    <MaxWidthLayout>
       <SectionLayout heading={category?.title || ''}>
         {products.length > 0 ? (
           <ProductCardContainer products={products} />
@@ -33,8 +33,8 @@ const CommonPage = () => {
           <Loading size={200} />
         )}
       </SectionLayout>
-    </Box>
+    </MaxWidthLayout>
   );
 };
 
-export default CommonPage;
+export default CategoryPage;
