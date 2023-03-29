@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ const CommonPage = () => {
     axios
       .get(`https://fakestoreapi.com/products/category/${category?.title}`)
       .then((res) => {
-        setProducts(res.data);        
+        setProducts(res.data);
       })
       .catch((err) => {
         console.log('error', err);
@@ -24,9 +24,11 @@ const CommonPage = () => {
   }, []);
 
   return (
-    <SectionLayout heading={category?.title || ''}>
-      {products.length > 0 && <ProductCardContainer products={products} />}
-    </SectionLayout>
+    <Box width={1} maxWidth={1100} mx='auto'>
+      <SectionLayout heading={category?.title || ''}>
+        {products.length > 0 && <ProductCardContainer products={products} />}
+      </SectionLayout>
+    </Box>
   );
 };
 

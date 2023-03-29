@@ -10,9 +10,9 @@ const SectionLayout: FC<SectionLayoutProps> = ({ children, heading }) => {
       <Typography variant='h4' textTransform='capitalize' mb={4}>
         {heading}
       </Typography>
-      <Stack direction='row' alignItems='center' spacing={4}>
+      <Box>
         {children}
-      </Stack>
+      </Box>
     </Box>
   );
 };

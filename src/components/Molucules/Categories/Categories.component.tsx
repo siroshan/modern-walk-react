@@ -10,7 +10,7 @@ const Categories = () => {
       <Typography variant='h4' mb={2}>
         Categories
       </Typography>
-      <Stack direction='row' alignItems='center' spacing={4}>
+      <Stack direction='row' alignItems='center' spacing={4} width={1}>
         {categories.map((category, i) => (
           <CategoryCard key={i} category={category} />
         ))}

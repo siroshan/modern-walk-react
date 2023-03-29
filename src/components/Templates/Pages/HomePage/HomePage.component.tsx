@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IProduct } from '../../../../types/models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
-import { Box } from '@mui/material';
-import { Categories } from '../../../Molucules/Categories';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import { SectionLayout } from '../../SectionLayout';
+import { CategoryCard } from '../../../Molucules/CategoryCard';
+import { categories } from '../../../../config/config';
 
 const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -25,8 +28,16 @@ const HomePage = () => {
 
   return (
     <Box width={1} maxWidth={1100} mx='auto' mt={4}>
-      {products.length > 0 && <ProductCardContainer products={products} />}
-      <Categories />
+      <SectionLayout heading='Flash Sale'>
+        {products.length > 0 && <ProductCardContainer products={products} />}
+      </SectionLayout>
+      <SectionLayout heading='Categories'>
+        <Stack direction='row' alignItems='center' spacing={4} width={1}>
+          {categories.map((category, i) => (
+            <CategoryCard key={i} category={category} />
+          ))}
+        </Stack>
+      </SectionLayout>
     </Box>
   );
 };
