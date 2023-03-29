@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { IProduct } from '../../../types/models/Product';
-import { ProductCardContainer } from '../../Molucules/ProductCardConatiner';
+import { ProductCardContainer } from '../ProductCardConatiner';
 import { categories } from '../../../config/config';
 import Typography from '@mui/material/Typography';
 
