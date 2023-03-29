@@ -27,12 +27,4 @@ jobs:
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Add Release Tag
-        uses: anothrNick/github-tag-action@1.26.0
-        if: success()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{ env.CHANGESET_RELEASE_VERSION }}
-          message: "Version v${{ env.CHANGESET_RELEASE_VERSION }}"
-          ref: ${{ github.ref }}
+          
