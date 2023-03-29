@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { CategoryCard } from '../../Atoms/CategoryCard';
+import { CategoryCard } from '../CategoryCard';
 import { categories } from '../../../config/config';
 
 const Categories = () => {

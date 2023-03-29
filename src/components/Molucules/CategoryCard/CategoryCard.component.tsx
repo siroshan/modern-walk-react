@@ -1,22 +1,21 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { CategoryCardProps } from './CategoryCard.type';
 
 const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
-  const getBgColor = () => {
-    if (category.title === "men's clothing") {
-      return '#2BD9AF';
-    } else if (category.title === "women's clothing") {
-      return '#FF5E84';
-    }
-  };
+
   return (
-    <a href={`categories/${category.link}`} className='nav-link' style={{width: '100%'}}>
+    <Link
+      to={`categories/${category.link}`}
+      className='nav-link'
+      style={{ width: '100%' }}
+    >
       <Box
         width={1}
         height='200px'
-        bgcolor={getBgColor}
+        bgcolor={category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84'}
         borderRadius='20px'
         display='flex'
         justifyContent='center'
@@ -31,7 +30,7 @@ const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
           {category.title}
         </Typography>
       </Box>
-    </a>
+    </Link>
   );
 };
 
