@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import { FC } from 'react';
 import { IProduct } from '../../../types/models/Product';
-import { ProductCard } from '../../Atoms/ProductCard';
+import ProductCard from '../ProductCard/ProductCard.component';
 
 const ProductCardContainer: FC<{ products: IProduct[] }> = ({
   products,
