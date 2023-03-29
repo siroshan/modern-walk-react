@@ -2,10 +2,10 @@ import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { IProduct } from '../../../types/models/Product';
-import { ProductCardContainer } from '../ProductCardConatiner';
-import { categories } from '../../../config/config';
 import Typography from '@mui/material/Typography';
+import { IProduct } from '../../../../types/models/Product';
+import { categories } from '../../../../config/config';
+import { ProductCardContainer } from '../../ProductCardConatiner';
 
 const Categories = () => {
   const { cat } = useParams();

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { IProduct } from '../../../types/models/Product';
-import { ProductCardContainer } from '../ProductCardConatiner';
+import { IProduct } from '../../../../types/models/Product';
+import { ProductCardContainer } from '../../ProductCardConatiner';
 import { Box } from '@mui/material';
-import { Categories } from '../../Molucules/Categories';
+import { Categories } from '../../../Molucules/Categories';
 
 const Home = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
