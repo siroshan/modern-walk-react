@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import React from 'react';
-import { Logo } from '../../Atoms/Logo';
+import { Logo } from '../../Molucules/Logo';
 
 const NavBar = () => {
   return (
@@ -22,7 +22,7 @@ const NavBar = () => {
         mx='auto'
         maxWidth={1100}
       >
-        <Logo />
+        <Logo title='Modern Walk' link='/'/>
       </Stack>
     </Box>
   );
