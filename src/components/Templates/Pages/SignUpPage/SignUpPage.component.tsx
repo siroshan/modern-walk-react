@@ -8,6 +8,8 @@ import { FC, useRef, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useNavigate } from 'react-router-dom';
+import { setSessionCookie } from '../../../../utils/cookie';
+import { MODEREN_WALK_USER_ID } from '../../../../config/constants';
 
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +24,7 @@ const SignUpPage = () => {
 
   const password = useRef({});
   password.current = watch('password', '');
+
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
@@ -31,13 +34,14 @@ const SignUpPage = () => {
           ...data,
         }
       );
+      setSessionCookie(MODEREN_WALK_USER_ID, res.data.id)
       navigate('/');
-      
     } catch (err) {
       console.log(err);
     }
     setIsLoading(false);
   };
+  
   return (
     <MaxWidthLayout>
       <Box maxWidth={400} width={1} mx='auto'>
