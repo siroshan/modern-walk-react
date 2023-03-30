@@ -11,8 +11,9 @@ import { Logo } from '../../Molucules/Logo';
 import { NavBar } from '../../Organisms/NavBar';
 import { ProfileMenu } from '../../Organisms/ProfileMenu';
 import { MODEREN_WALK_USER_ID } from '../../../config/constants';
-import { useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { deleteCookie, getCookie } from '../../../utils/cookie';
+import { Button } from '@mui/material';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const NavBarTemplate = () => {
         <Stack direction='row' justifyContent='space-between'>
           <Logo title='Modern Walk' link='/' />
         </Stack>
-        {getCookie(MODEREN_WALK_USER_ID) && (
+        {!!getCookie(MODEREN_WALK_USER_ID) ? (
           <>
             <Box
               borderRadius='50%'
@@ -74,6 +75,10 @@ const NavBarTemplate = () => {
               </MenuItem>
             </ProfileMenu>
           </>
+        ) : (
+          <Link to='/signin'>
+            <Button variant='contained'>Sign In</Button>
+          </Link>
         )}
       </Stack>
     </NavBar>
