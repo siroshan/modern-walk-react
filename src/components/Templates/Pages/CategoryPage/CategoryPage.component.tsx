@@ -11,9 +11,11 @@ import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 const CategoryPage = () => {
   const { cat } = useParams();
   const category = categories.find((category) => category.link === cat);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`https://fakestoreapi.com/products/category/${category?.title}`)
       .then((res) => {
@@ -21,17 +23,16 @@ const CategoryPage = () => {
       })
       .catch((err) => {
         console.log('error', err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <MaxWidthLayout>
       <SectionLayout heading={category?.title || ''}>
-        {products.length > 0 ? (
-          <ProductCardContainer products={products} />
-        ) : (
-          <Loading size={200} />
-        )}
+        <ProductCardContainer products={products} isLoading={isLoading} />
       </SectionLayout>
     </MaxWidthLayout>
   );

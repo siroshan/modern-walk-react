@@ -11,7 +11,10 @@ import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 
 const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   useEffect(() => {
+    setIsLoading(true)
     axios
       .get('https://fakestoreapi.com/products')
       .then((res) => {
@@ -24,17 +27,16 @@ const HomePage = () => {
       })
       .catch((err) => {
         console.log('error', err);
-      });
+      })
+      .finally(()=>{
+        setIsLoading(false)
+      })
   }, []);
 
   return (
     <MaxWidthLayout>
       <SectionLayout heading='Flash Sale'>
-        {products.length > 0 ? (
-          <ProductCardContainer products={products} />
-        ) : (
-          <Loading size={200} />
-        )}
+        <ProductCardContainer products={products} isLoading={isLoading}/>
       </SectionLayout>
       <SectionLayout heading='Categories'>
         <Stack direction='row' alignItems='center' spacing={4} width={1}>
