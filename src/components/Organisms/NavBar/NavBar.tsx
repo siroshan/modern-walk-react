@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import { FC, ReactNode } from 'react';
-
+import { MaxWidthLayout } from '../../Layouts/MaxWidthLayout';
 
 const NavBar: FC<{ children: ReactNode }> = ({ children }) => {
   return (
@@ -13,17 +12,10 @@ const NavBar: FC<{ children: ReactNode }> = ({ children }) => {
       zIndex={100}
       borderColor='#D9D9D9'
       borderBottom={2}
+      px={4}
+      boxSizing='border-box'
     >
-      <Stack
-        direction='row'
-        alignItems='center'
-        justifyContent='center'
-        width={1}
-        mx='auto'
-        maxWidth={1100}
-      >
-        {children}
-      </Stack>
+      {children}
     </Box>
   );
 };
