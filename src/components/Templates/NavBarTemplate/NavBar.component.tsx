@@ -10,15 +10,15 @@ import { useState } from 'react';
 import { Logo } from '../../Molucules/Logo';
 import { NavBar } from '../../Organisms/NavBar';
 import { ProfileMenu } from '../../Organisms/ProfileMenu';
-import { MODEREN_WALK_USER_ID } from '../../../config/constants';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { deleteCookie, getCookie } from '../../../utils/cookie';
 import { Button } from '@mui/material';
+import { useUser } from '../../../context/user';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isProfileMenuOpen = Boolean(anchorEl);
+  const user = useUser();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,7 +27,7 @@ const NavBarTemplate = () => {
   };
 
   const handleLogOut = () => {
-    deleteCookie(MODEREN_WALK_USER_ID);
+    user?.removeUser();
     navigate('/signin');
   };
   return (
@@ -36,7 +36,7 @@ const NavBarTemplate = () => {
         <Stack direction='row' justifyContent='space-between'>
           <Logo title='Modern Walk' link='/' />
         </Stack>
-        {!!getCookie(MODEREN_WALK_USER_ID) ? (
+        {!!user?.user ? (
           <>
             <Box
               borderRadius='50%'

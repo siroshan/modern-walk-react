@@ -8,17 +8,16 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { setSessionCookie } from '../../../../utils/cookie';
-import { MODEREN_WALK_USER_ID } from '../../../../config/constants';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../types/models/User';
+import { useUser } from '../../../../context/user';
 
 const SignInPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
+  const user = useUser();
   const userService = UserService.getInstance();
 
   const {
@@ -30,11 +29,11 @@ const SignInPage = () => {
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
-      const user: IUser = await userService.getUser(data.email);
+      const userRes: IUser = await userService.getUser(data.email);
 
-      if (user.password === data.password) {
-        if (user.id !== undefined) {
-          setSessionCookie(MODEREN_WALK_USER_ID, user.id);
+      if (userRes.password === data.password) {
+        if (userRes.id !== undefined) {
+          user?.setUser(userRes);
         }
         navigate('/');
       } else {
