@@ -1,30 +1,30 @@
-import React, { ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo, useState, createContext, useContext } from 'react';
 import { IUser } from '../../types/models/User';
 import { UserContextType } from './userContext.type';
 
-const UserContext = React.createContext<UserContextType | null>(null);
+export const UserContext = createContext<UserContextType | null>(null);
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = React.useState<IUser>();
+  const [user, setUser] = useState<IUser>();
 
-  const removeUser = ()=> {
-    setUser(undefined)
-  }
+  const signIn = (user: IUser) => {
+    setUser(user);
+  };
+
+  const signOut = () => {
+    setUser(undefined);
+  };
 
   const value = useMemo(() => {
-    return { user, setUser,removeUser };
+    return { user, signIn, signOut };
   }, [user]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export const useUser = () => {
-  const user = React.useContext(UserContext) as UserContextType;
-
-  if (!user?.user) {
-    return null;
-  }
-  return user;
+  const { user, signIn, signOut } = useContext(UserContext) as UserContextType;
+  return { user, signIn, signOut };
 };
 
 export default UserProvider;

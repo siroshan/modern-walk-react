@@ -18,7 +18,7 @@ const NavBarTemplate = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isProfileMenuOpen = Boolean(anchorEl);
-  const user = useUser();
+  const { signOut, user } = useUser();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,7 +27,8 @@ const NavBarTemplate = () => {
   };
 
   const handleLogOut = () => {
-    user?.removeUser();
+    handleClose()
+    signOut();
     navigate('/signin');
   };
   return (
@@ -36,7 +37,7 @@ const NavBarTemplate = () => {
         <Stack direction='row' justifyContent='space-between'>
           <Logo title='Modern Walk' link='/' />
         </Stack>
-        {!!user?.user ? (
+        {!!user ? (
           <>
             <Box
               borderRadius='50%'

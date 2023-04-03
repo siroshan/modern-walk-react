@@ -13,7 +13,7 @@ import { useUser } from '../../../../context/user';
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const user = useUser();
+  const { signIn } = useUser();
   const userService = UserService.getInstance();
   const {
     control,
@@ -35,7 +35,7 @@ const SignUpPage = () => {
         password: data.password,
       });
       if (userRes.id !== undefined) {
-        user?.setUser(userRes)
+        signIn(userRes);
       }
       navigate('/');
     } catch (err) {

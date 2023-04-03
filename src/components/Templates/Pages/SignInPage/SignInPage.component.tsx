@@ -17,7 +17,7 @@ const SignInPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
-  const user = useUser();
+  const { signIn } = useUser();
   const userService = UserService.getInstance();
 
   const {
@@ -33,7 +33,7 @@ const SignInPage = () => {
 
       if (userRes.password === data.password) {
         if (userRes.id !== undefined) {
-          user?.setUser(userRes);
+          signIn(userRes);
         }
         navigate('/');
       } else {
