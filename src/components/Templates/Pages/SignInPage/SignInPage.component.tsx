@@ -12,11 +12,14 @@ import axios, { AxiosResponse } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { setSessionCookie } from '../../../../utils/cookie';
 import { MODEREN_WALK_USER_ID } from '../../../../config/constants';
+import { UserService } from '../../../../services/user';
+import { IUser } from '../../../../types/models/User';
 
 const SignInPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
+  const userService = UserService.getInstance();
 
   const {
     control,
@@ -27,20 +30,21 @@ const SignInPage = () => {
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
-      const res: AxiosResponse = await axios.get(
-        `http://localhost:3001/users?email=${data.email}`
-      );
-      if (res.data[0].password === data.password) {
-        console.log('matched');
-        setSessionCookie(MODEREN_WALK_USER_ID, res.data.id)
+      const user: IUser = await userService.getUser(data.email);
+
+      if (user.password === data.password) {
+        if (user.id !== undefined) {
+          setSessionCookie(MODEREN_WALK_USER_ID, user.id);
+        }
         navigate('/');
       } else {
-        console.log('not matched', res.data[0]);
+        console.log('not matched');
       }
     } catch (err) {
       console.log('sign in error', err);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (

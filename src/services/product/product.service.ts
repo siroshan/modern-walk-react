@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { IProduct } from '../../types/models/Product';
 
-class ProductService {
+export class ProductService {
   private static instance: ProductService;
   axiosInstance: AxiosInstance;
   private constructor() {
@@ -24,4 +24,3 @@ class ProductService {
   }
 }
 
-export default ProductService;

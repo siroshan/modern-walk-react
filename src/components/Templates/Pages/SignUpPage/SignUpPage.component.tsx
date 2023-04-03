@@ -3,18 +3,20 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { FC, useRef, useState } from 'react';
-
+import { useRef, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useNavigate } from 'react-router-dom';
 import { setSessionCookie } from '../../../../utils/cookie';
 import { MODEREN_WALK_USER_ID } from '../../../../config/constants';
+import { UserService } from '../../../../services/user';
+import { IUser } from '../../../../types/models/User';
 
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShoPwd] = useState(false);
   const navigate = useNavigate();
+  const userService = UserService.getInstance();
   const {
     control,
     handleSubmit,
@@ -28,20 +30,22 @@ const SignUpPage = () => {
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
-      const res: AxiosResponse = await axios.post(
-        'http://localhost:3001/users',
-        {
-          ...data,
-        }
-      );
-      setSessionCookie(MODEREN_WALK_USER_ID, res.data.id)
+      const user: IUser = await userService.createUser({
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+      });
+      if (user.id !== undefined) {
+        setSessionCookie(MODEREN_WALK_USER_ID, user.id);
+      }
       navigate('/');
     } catch (err) {
       console.log(err);
     }
     setIsLoading(false);
   };
-  
+
   return (
     <MaxWidthLayout>
       <Box maxWidth={400} width={1} mx='auto'>
