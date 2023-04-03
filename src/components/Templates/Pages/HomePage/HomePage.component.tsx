@@ -8,17 +8,18 @@ import { CategoryCard } from '../../../Molucules/CategoryCard';
 import { categories } from '../../../../config/config';
 import { Loading } from '../../../Molucules/Loading';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
+import { ProductService } from '../../../../services/product';
 
 const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const productService = ProductService.getInstance();
+  
   useEffect(() => {
-    setIsLoading(true)
-    axios
-      .get('https://fakestoreapi.com/products')
+    setIsLoading(true);
+    productService.getProducts()
       .then((res) => {
-        const products = res.data.filter(
+        const products = res.filter(
           (prod: IProduct) =>
             prod.category === "men's clothing" ||
             prod.category === "women's clothing"
