@@ -7,27 +7,23 @@ import { Loading } from '../../../Molucules/Loading';
 import { ProductCardContainer } from '../../ProductCardConatiner';
 import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
+import { ProductService } from '../../../../services/product';
+import { useQuery } from 'react-query';
 
 const CategoryPage = () => {
+  
   const { cat } = useParams();
   const category = categories.find((category) => category.link === cat);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const productService = ProductService.getInstance();
 
-  useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(`https://fakestoreapi.com/products/category/${category?.title}`)
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.log('error', err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  const { isLoading, error } = useQuery<IProduct[], Error>(
+    'products',
+    async () => {
+      return await productService.getProductsByCategory(category?.title || '');
+    },
+    { onSuccess: (res) => setProducts(res) }
+  );
 
   return (
     <MaxWidthLayout>

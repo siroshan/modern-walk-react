@@ -12,15 +12,22 @@ export class ProductService {
 
   public static getInstance(): ProductService {
     if (!ProductService.instance) {
-        ProductService.instance = new ProductService();
+      ProductService.instance = new ProductService();
     }
     return ProductService.instance;
-}
+  }
 
   async getProducts(): Promise<IProduct[]> {
     return await (
       await this.axiosInstance.get('products')
     ).data;
   }
-}
 
+  async getProductsByCategory(category: string): Promise<IProduct[]> {
+    return await (
+      await this.axiosInstance.get(
+        `https://fakestoreapi.com/products/category/${category}`
+      )
+    ).data;
+  }
+}
