@@ -10,7 +10,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
-import { IUser } from '../../../../types/models/User';
+import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
 
 const SignInPage = () => {
@@ -18,8 +18,6 @@ const SignInPage = () => {
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
   const { signIn } = useUser();
-  const userService = UserService.getInstance();
-
   const {
     control,
     handleSubmit,
@@ -29,7 +27,7 @@ const SignInPage = () => {
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
-      const userRes: IUser = await userService.getUser(data.email);
+      const userRes:IUser = await UserService.getUser(data.email);
 
       if (userRes.password === data.password) {
         if (userRes.id !== undefined) {

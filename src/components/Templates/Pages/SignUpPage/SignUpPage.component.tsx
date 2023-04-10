@@ -7,14 +7,13 @@ import { useRef, useState } from 'react';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
-import { IUser } from '../../../../types/models/User';
+import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
 
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { signIn } = useUser();
-  const userService = UserService.getInstance();
   const {
     control,
     handleSubmit,
@@ -28,7 +27,7 @@ const SignUpPage = () => {
   const onsubmit = async (data: FieldValues) => {
     setIsLoading(true);
     try {
-      const userRes: IUser = await userService.createUser({
+      const userRes:IUser = await UserService.createUser({
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName,

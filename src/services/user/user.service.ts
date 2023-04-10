@@ -1,31 +1,23 @@
-import axios, { AxiosInstance } from 'axios';
-import { IUser } from '../../types/models/User';
+import axios, { AxiosError } from 'axios';
+import { IUser } from '../../models/User';
+import { axiosUserInstance } from '../api';
 
-export class UserService {
-  private static instance: UserService;
-  axiosInstance: AxiosInstance;
-  private constructor() {
-    this.axiosInstance = axios.create({
-      baseURL: process.env.REACT_APP_USER_API_BASE_URL,
-    });
+export const createUser = async (user: IUser): Promise<IUser> => {
+  try {
+    const { data } = await axiosUserInstance.post(`users`, { ...user });
+    return data
+  } catch (err) {
+    console.log('error', err);
+    throw err;
   }
+};
 
-  public static getInstance(): UserService {
-    if (!UserService.instance) {
-      UserService.instance = new UserService();
-    }
-    return UserService.instance;
+export const getUser = async (email: string): Promise<IUser> => {
+  try {
+    const { data } = await axiosUserInstance.get(`users?email=${email}`);
+    return data[0]
+  } catch (err) {
+    console.log('error', err);
+    throw err;
   }
-
-  async createUser(user: IUser): Promise<IUser> {
-    return await (
-      await this.axiosInstance.post(`users`, { ...user })
-    ).data;
-  }
-
-  async getUser(email: string): Promise<IUser> {
-    return await (
-      await this.axiosInstance.get(`users?email=${email}`)
-    ).data[0];
-  }
-}
+};

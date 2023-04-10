@@ -1,10 +1,10 @@
-import { ReactNode, useMemo, useState, createContext, useContext } from 'react';
-import { IUser } from '../../types/models/User';
-import { UserContextType } from './userContext.type';
+import { FC, useMemo, useState, createContext, useContext } from 'react';
+import { IUser } from '../../models/User';
+import { UserContextType, UserProviderProps } from './userContext.type';
 
-export const UserContext = createContext<UserContextType | null>(null);
+const UserContext = createContext<UserContextType | null>(null);
 
-const UserProvider = ({ children }: { children: ReactNode }) => {
+const UserProvider:FC<UserProviderProps> = (props) => {
   const [user, setUser] = useState<IUser>();
 
   const signIn = (user: IUser) => {
@@ -19,12 +19,14 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     return { user, signIn, signOut };
   }, [user]);
 
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>;
 };
 
-export const useUser = () => {
-  const { user, signIn, signOut } = useContext(UserContext) as UserContextType;
-  return { user, signIn, signOut };
+const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) throw new Error("userContext must be used within UserProvider");
+
+  return { ...context };
 };
 
-export default UserProvider;
+export { useUser, UserProvider }

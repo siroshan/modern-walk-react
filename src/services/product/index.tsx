@@ -1,1 +1,1 @@
-export { ProductService } from './product.service'
+export * as ProductService from './product.service';

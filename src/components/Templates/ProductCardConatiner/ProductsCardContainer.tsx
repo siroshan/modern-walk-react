@@ -2,7 +2,7 @@ import { Skeleton } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Stack } from '@mui/system';
 import { FC } from 'react';
-import { IProduct } from '../../../types/models/Product';
+import { IProduct } from '../../../models/Product';
 import ProductCard from '../../Molucules/ProductCard/ProductCard.component';
 import { ProductCardSkeleton } from '../../Molucules/ProductCardLoadingSkeleton';
 import { ProductCardContainerProps } from './ProductCardContainer.type';

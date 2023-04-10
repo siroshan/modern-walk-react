@@ -1,4 +1,4 @@
-import { IProduct } from "../../../types/models/Product"
+import { IProduct } from "../../../models/Product"
 
 export type ProductCardContainerProps = {
     products: IProduct[];

@@ -1,33 +1,28 @@
-import axios, { AxiosInstance } from 'axios';
-import { IProduct } from '../../types/models/Product';
+import { AxiosError } from 'axios';
+import { IProduct } from '../../models/Product';
+import { axiosProductInstance } from '../api/api';
 
-export class ProductService {
-  private static instance: ProductService;
-  axiosInstance: AxiosInstance;
-  private constructor() {
-    this.axiosInstance = axios.create({
-      baseURL: process.env.REACT_APP_PRODUCT_API_BASE_URL,
-    });
+export const getProducts = async (): Promise<IProduct[]> => {
+  try {
+    const { data } = await axiosProductInstance.get<IProduct[]>('products');
+    // console.log('data', data);
+    return data;
+  } catch (err) {
+    console.log('error', err);
+    throw err;
   }
+};
 
-  public static getInstance(): ProductService {
-    if (!ProductService.instance) {
-      ProductService.instance = new ProductService();
-    }
-    return ProductService.instance;
+export const getProductsByCategory = async (
+  category: string
+): Promise<IProduct[]> => {
+  try {
+    const { data } = await axiosProductInstance.get<IProduct[]>(
+      `https://fakestoreapi.com/products/category/${category}`
+    );
+    return data;
+  } catch (err) {
+    console.log('error', err);
+    throw err;
   }
-
-  async getProducts(): Promise<IProduct[]> {
-    return await (
-      await this.axiosInstance.get('products')
-    ).data;
-  }
-
-  async getProductsByCategory(category: string): Promise<IProduct[]> {
-    return await (
-      await this.axiosInstance.get(
-        `https://fakestoreapi.com/products/category/${category}`
-      )
-    ).data;
-  }
-}
+};

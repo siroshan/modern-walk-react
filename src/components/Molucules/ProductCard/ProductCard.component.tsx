@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
-import { IProduct } from '../../../types/models/Product';
+import { IProduct } from '../../../models/Product';
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
   const getBgColor = () => {

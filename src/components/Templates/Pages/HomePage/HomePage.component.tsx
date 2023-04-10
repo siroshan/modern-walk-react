@@ -1,37 +1,32 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { IProduct } from '../../../../types/models/Product';
+import { IProduct } from '../../../../models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
 import Stack from '@mui/material/Stack';
 import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { CategoryCard } from '../../../Molucules/CategoryCard';
 import { categories } from '../../../../config/config';
-import { Loading } from '../../../Molucules/Loading';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
-import { ProductService } from '../../../../services/product';
 import { useQuery } from 'react-query';
+import { ProductService } from '../../../../services/product';
 
 const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const productService = ProductService.getInstance();
 
-  const { isLoading, error } = useQuery<IProduct[], Error>(
+  const { isLoading, error, data } = useQuery(
     'products',
-    async () => {
-      return await productService.getProducts();
-    },
-    {
-      onSuccess: (res) => {
-        const products = res.filter(
-          (prod: IProduct) =>
-            prod.category === "men's clothing" ||
-            prod.category === "women's clothing"
-        );
-        setProducts(products);
-      },
-    }
+    ProductService.getProducts
   );
 
+  useEffect(() => {
+    if (!isLoading && Array.isArray(data)) {
+      const products = data.filter(
+        (prod: IProduct) =>
+          prod.category === "men's clothing" ||
+          prod.category === "women's clothing"
+      );
+      setProducts(products);
+    }
+  }, [isLoading, data]);
 
   return (
     <MaxWidthLayout>
