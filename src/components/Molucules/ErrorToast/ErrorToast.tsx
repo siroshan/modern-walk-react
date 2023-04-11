@@ -8,7 +8,7 @@ import { ErrorToastProps } from './ErrorToast.type';
 const ErrorToast: FC<ErrorToastProps> = ({ error }) => {
   const err = error as CustomError;
   return (
-    <Toast message='Requested resource not found!' severity='error'>
+    <Toast>
       <Alert severity='error' sx={{ width: '100%' }}>
         {err.message}
       </Alert>

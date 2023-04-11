@@ -3,15 +3,16 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useRef, useState } from 'react';
+import { useMutation } from 'react-query';
+import { useRef } from 'react';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
+import { ErrorToast } from '../../../Molucules/ErrorToast';
 
 const SignUpPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const UserCTX = useUser();
   const {
@@ -24,24 +25,28 @@ const SignUpPage = () => {
   const password = useRef({});
   password.current = watch('password', '');
 
-  const onsubmit = async (data: FieldValues) => {
-    setIsLoading(true);
-    try {
-      const userRes:IUser = await UserService.createUser({
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        password: data.password,
-      });
-      if (userRes.id !== undefined) {
-        UserCTX.signIn(userRes);
-      }
+  const {
+    mutate: createUser,
+    error,
+    isLoading,
+  } = useMutation({
+    mutationFn: (user: IUser) => UserService.createUser(user),
+    onSuccess: (newUser) => {
+      UserCTX.signIn(newUser);
       navigate('/');
-    } catch (err) {
-      console.log(err);
-    }
-    setIsLoading(false);
+    },
+  });
+
+  const onsubmit = async (data: FieldValues) => {
+    createUser({
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      password: data.password,
+    });
   };
+
+  if(error && !isLoading) return (<ErrorToast error={error}/>)
 
   return (
     <MaxWidthLayout>

@@ -7,14 +7,15 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import { useState } from 'react';
+import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
+import { useState } from 'react';
+import { ErrorToast } from '../../../Molucules/ErrorToast';
 
 const SignInPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
   const UserCTX = useUser();
@@ -24,25 +25,27 @@ const SignInPage = () => {
     formState: { errors },
   } = useForm({ mode: 'onBlur' });
 
-  const onsubmit = async (data: FieldValues) => {
-    setIsLoading(true);
-    try {
-      const userRes:IUser = await UserService.getUser(data.email);
-
-      if (userRes.password === data.password) {
-        if (userRes.id !== undefined) {
-          UserCTX.signIn(userRes);
-        }
+  const {
+    mutate: signIn,
+    isSuccess,
+    error,
+    isLoading,
+  } = useMutation({
+    mutationFn: (user: Pick<IUser, 'email' | 'password'>) =>
+      UserService.getUser(user.email),
+    onSuccess: (data, variable, context) => {
+      if (data.password === variable.password) {
+        UserCTX.signIn(data);
         navigate('/');
-      } else {
-        console.log('not matched');
       }
-    } catch (err) {
-      console.log('sign in error', err);
-    } finally {
-      setIsLoading(false);
-    }
+    },
+  });
+
+  const onsubmit = async (data: FieldValues) => {
+    signIn({ email: data.email, password: data.password });
   };
+
+  if (error && !isLoading) return <ErrorToast error={error} />;
 
   return (
     <Box maxWidth={400} mx='auto' width={1}>
