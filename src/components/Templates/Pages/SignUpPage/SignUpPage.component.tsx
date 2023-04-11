@@ -13,7 +13,7 @@ import { useUser } from '../../../../context/user';
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { signIn } = useUser();
+  const UserCTX = useUser();
   const {
     control,
     handleSubmit,
@@ -34,7 +34,7 @@ const SignUpPage = () => {
         password: data.password,
       });
       if (userRes.id !== undefined) {
-        signIn(userRes);
+        UserCTX.signIn(userRes);
       }
       navigate('/');
     } catch (err) {
