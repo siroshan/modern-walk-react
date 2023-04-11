@@ -1,4 +1,5 @@
+import { CustomError } from "../../../services/api";
+
 export type ErrorToastProps = {
-    errMessage?: string;
-    error?: unknown;
+    error: unknown | CustomError;
 }

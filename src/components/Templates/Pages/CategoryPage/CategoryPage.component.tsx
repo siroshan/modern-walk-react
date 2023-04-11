@@ -8,6 +8,7 @@ import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { ProductService } from '../../../../services/product';
 import { useQuery } from 'react-query';
+import { ErrorToast } from '../../../Molucules/ErrorToast';
 
 const CategoryPage = () => {
   const { cat } = useParams();
@@ -23,6 +24,8 @@ const CategoryPage = () => {
       setProducts(data);
     }
   }, [isLoading, data]);
+
+  if (error && !isLoading) return <ErrorToast error={error} />;
 
   return (
     <MaxWidthLayout>

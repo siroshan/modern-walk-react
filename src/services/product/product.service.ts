@@ -4,7 +4,6 @@ import { axiosProductInstance, CustomError } from '../api';
 export const getProducts = async (): Promise<IProduct[]> => {
   try {
     const { data } = await axiosProductInstance.get<IProduct[]>('products');
-    // console.log('data', data);
     return data;
   } catch (err) {
     console.log('error', err);
