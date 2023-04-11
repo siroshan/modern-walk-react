@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import { IProduct } from '../../models/Product';
 import { axiosProductInstance } from '../api/api';
+import { CustomError } from '../api/api.type';
 
 export const getProducts = async (): Promise<IProduct[]> => {
   try {
@@ -9,7 +10,7 @@ export const getProducts = async (): Promise<IProduct[]> => {
     return data;
   } catch (err) {
     console.log('error', err);
-    throw err;
+    throw CustomError.fromAxiosError(err);
   }
 };
 
@@ -23,6 +24,6 @@ export const getProductsByCategory = async (
     return data;
   } catch (err) {
     console.log('error', err);
-    throw err;
+    throw CustomError.fromAxiosError(err);
   }
 };
