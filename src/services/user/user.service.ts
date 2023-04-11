@@ -1,7 +1,5 @@
-import axios, { AxiosError } from 'axios';
 import { IUser } from '../../models/User';
-import { axiosUserInstance } from '../api';
-import { CustomError } from '../api/api.type';
+import { axiosUserInstance, CustomError } from '../api';
 
 export const createUser = async (user: IUser): Promise<IUser> => {
   try {

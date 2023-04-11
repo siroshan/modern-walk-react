@@ -1,2 +1,2 @@
 export { default as ErrorToast } from './ErrorToast';
-export type { ErrorToastProps } from './ErrorToast.props';
+export type { ErrorToastProps } from './ErrorToast.type';

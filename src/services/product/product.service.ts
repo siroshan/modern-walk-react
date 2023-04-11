@@ -1,7 +1,5 @@
-import { AxiosError } from 'axios';
 import { IProduct } from '../../models/Product';
-import { axiosProductInstance } from '../api/api';
-import { CustomError } from '../api/api.type';
+import { axiosProductInstance, CustomError } from '../api';
 
 export const getProducts = async (): Promise<IProduct[]> => {
   try {

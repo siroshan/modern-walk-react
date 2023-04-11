@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { FC, useState } from 'react';
 import { Alert } from '../../Atoms/Alert';
 import { Toast } from '../../Organisms/Toast';
-import { ErrorToastProps } from './ErrorToast.props';
+import { ErrorToastProps } from './ErrorToast.type';
 
 const ErrorToast: FC<ErrorToastProps> = ({ errMessage, error }) => {
   const setMessage = (): string => {    
