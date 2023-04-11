@@ -8,6 +8,7 @@ import { categories } from '../../../../config/config';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../../services/product';
+import { ErrorToast } from '../../../Molucules/ErrorToast';
 
 const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -27,6 +28,8 @@ const HomePage = () => {
       setProducts(products);
     }
   }, [isLoading, data]);
+
+  if(error && !isLoading) return (<ErrorToast error={error}/>)
 
   return (
     <MaxWidthLayout>
