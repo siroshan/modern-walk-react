@@ -46,7 +46,7 @@ const SignUpPage = () => {
     });
   };
 
-  if(error && !isLoading) return (<ErrorToast error={error}/>)
+  if (error && !isLoading) return <ErrorToast error={error} />;
 
   return (
     <MaxWidthLayout>
@@ -205,8 +205,8 @@ const SignUpPage = () => {
             />
           </Box>
           <Box width={1} textAlign='center' mb={8} mt={4}>
-            <Button type='submit' variant='contained'>
-              Sign Up
+            <Button type='submit' variant='contained' disabled={isLoading}>
+              {isLoading ? 'Loading...' : 'Sign Up'}
             </Button>
           </Box>
         </form>
