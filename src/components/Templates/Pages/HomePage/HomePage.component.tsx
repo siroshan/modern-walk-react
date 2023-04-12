@@ -25,7 +25,7 @@ const HomePage = () => {
           prod.category === "men's clothing" ||
           prod.category === "women's clothing"
       );
-      setProducts(products);
+      setProducts(products.slice(0, 4));
     }
   }, [isLoading, data]);
 
