@@ -6,7 +6,12 @@ import { Toast } from '../../Organisms/Toast';
 import { ErrorToastProps } from './ErrorToast.type';
 
 const ErrorToast: FC<ErrorToastProps> = ({ error }) => {
-  const err = error as CustomError;
+  let err;
+  if (error instanceof CustomError) {
+    err = error;
+  } else {
+    err = new CustomError(error);
+  }
   return (
     <Toast>
       <Alert severity='error' sx={{ width: '100%' }}>

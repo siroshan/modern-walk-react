@@ -29,21 +29,24 @@ const HomePage = () => {
     }
   }, [isLoading, data]);
 
-  if(error && !isLoading) return (<ErrorToast error={error}/>)
+  if (error && !isLoading) return <ErrorToast error={error} />;
 
   return (
-    <MaxWidthLayout>
-      <SectionLayout heading='Flash Sale'>
-        <ProductCardContainer products={products} isLoading={isLoading} />
-      </SectionLayout>
-      <SectionLayout heading='Categories'>
-        <Stack direction='row' alignItems='center' spacing={4} width={1}>
-          {categories.map((category, i) => (
-            <CategoryCard key={i} category={category} />
-          ))}
-        </Stack>
-      </SectionLayout>
-    </MaxWidthLayout>
+    <>
+      <MaxWidthLayout>
+        <SectionLayout heading='Flash Sale'>
+          <ProductCardContainer products={products} isLoading={isLoading} />
+        </SectionLayout>
+        <SectionLayout heading='Categories'>
+          <Stack direction='row' alignItems='center' spacing={4} width={1}>
+            {categories.map((category, i) => (
+              <CategoryCard key={i} category={category} />
+            ))}
+          </Stack>
+        </SectionLayout>
+      </MaxWidthLayout>
+      {error && !isLoading && <ErrorToast error={error} />}
+    </>
   );
 };
 
