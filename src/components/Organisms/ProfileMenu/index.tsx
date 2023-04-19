@@ -1,2 +1,2 @@
-export { default as ProfileMenu } from './ProfileMenu.component'
-export type { ProfileMenuProps } from './ProfileMenu.type'
+export { default as PopoverPanel } from './PopoverPanel.component'
+export type { PopoverPanelProps } from './Popover.type'
