@@ -1,35 +1,23 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { CategoryCardProps } from './CategoryCard.type';
 
 const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
-
   return (
     <Link
       to={`categories/${category.link}`}
-      className='nav-link'
+      className='nav-link category-card-wrap'
       style={{ width: '100%' }}
     >
-      <Box
-        width={1}
-        height='200px'
-        bgcolor={category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84'}
-        borderRadius='20px'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
+      <div
+        className='title-wrap'
+        style={{
+          backgroundColor:
+            category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84',
+        }}
       >
-        <Typography
-          textTransform='capitalize'
-          fontSize={32}
-          fontWeight={600}
-          color='common.white'
-        >
-          {category.title}
-        </Typography>
-      </Box>
+        <div className='title'>{category.title}</div>
+      </div>
     </Link>
   );
 };
