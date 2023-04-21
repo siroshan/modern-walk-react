@@ -6,18 +6,11 @@ import { LogoProps } from './Logo.type';
 
 const Logo: FC<LogoProps> = ({ title, link }) => {
   return (
-    <Box px={4} py={1} textAlign='center'>
-      <Link to={link} className='nav-link'>
-        <Typography
-          fontSize={40}
-          textAlign='center'
-          fontWeight={600}
-          textTransform='capitalize'
-        >
-          {title}
-        </Typography>
+    <div className='px-4 py-2 text-center'>
+      <Link to={link} className='text-inherit no-underline'>
+        <h1 className='text-center text-5xl font-bold capitalize'>{title}</h1>
       </Link>
-    </Box>
+    </div>
   );
 };
 
