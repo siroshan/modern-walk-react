@@ -5,31 +5,20 @@ import { Link } from 'react-router-dom';
 import { CategoryCardProps } from './CategoryCard.type';
 
 const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
-
+  const bgColor = category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84';
   return (
     <Link
       to={`categories/${category.link}`}
-      className='nav-link'
+      className='text-inherit no-underline'
       style={{ width: '100%' }}
     >
-      <Box
-        width={1}
-        height='200px'
-        bgcolor={category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84'}
-        borderRadius='20px'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
+      <div
+        className={`flex h-52 w-full flex-row items-center justify-center rounded-3xl bg-[${bgColor}]`}
       >
-        <Typography
-          textTransform='capitalize'
-          fontSize={32}
-          fontWeight={600}
-          color='common.white'
-        >
+        <h2 className='text-3xl font-extrabold capitalize tracking-tight text-white'>
           {category.title}
-        </Typography>
-      </Box>
+        </h2>
+      </div>
     </Link>
   );
 };
