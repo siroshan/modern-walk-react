@@ -7,7 +7,7 @@ import { SectionLayoutProps } from './SectionLayout.type';
 const SectionLayout: FC<SectionLayoutProps> = ({ children, heading }) => {
   return (
     <div className='mt-8'>
-      <h2 className='scroll-m-20 text-3xl font-extrabold tracking-tight mb-8'>
+      <h2 className='mb-8 scroll-m-20 text-3xl font-extrabold tracking-tight'>
         {heading}
       </h2>
       <div>{children}</div>

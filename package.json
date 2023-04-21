@@ -31,6 +31,8 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.7",
     "sass": "^1.59.3",
     "tailwindcss": "^3.3.1"
   },
