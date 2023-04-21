@@ -11,7 +11,7 @@ import { Logo } from '../../Molucules/Logo';
 import { NavBar } from '../../Organisms/NavBar';
 import { ProfileMenu } from '../../Organisms/ProfileMenu';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button } from '../../../components/Atoms/Button';
 import { useUser } from '../../../context/user';
 
 const NavBarTemplate = () => {
@@ -96,7 +96,7 @@ const NavBarTemplate = () => {
             style={{ transform: 'translate(-90%, -50%)' }}
           >
             <Link to='/signin'>
-              <Button variant='contained'>Sign In</Button>
+              <Button>Sign In</Button>
             </Link>
           </Box>
         )}
