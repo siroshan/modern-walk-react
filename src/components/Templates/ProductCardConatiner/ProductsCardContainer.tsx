@@ -42,7 +42,7 @@ const ProductCardContainer: FC<ProductCardContainerProps> = ({
           .fill(undefined)
           .map((dummy, i) => (
             <Grid item key={i} xs={12} sm={6} md={6} lg={3} xl={3}>
-              <ProductCardSkeleton width={200} height={300} />
+              <ProductCardSkeleton />
             </Grid>
           ))}
       </Grid>
