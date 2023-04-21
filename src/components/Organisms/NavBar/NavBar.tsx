@@ -3,19 +3,9 @@ import { FC, ReactNode } from 'react';
 
 const NavBar: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <Box
-      width={1}
-      position='sticky'
-      bgcolor='#f5f5f5'
-      top={0}
-      zIndex={100}
-      borderColor='#D9D9D9'
-      borderBottom={2}
-      px={4}
-      boxSizing='border-box'
-    >
+    <div className='sticky top-0 z-50 box-border w-full border-b-2 border-black bg-gray-50 px-4'>
       {children}
-    </Box>
+    </div>
   );
 };
 
