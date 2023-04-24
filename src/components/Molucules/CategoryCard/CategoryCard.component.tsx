@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CategoryCardProps } from './CategoryCard.type';
 
 const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
-  const bgColor = category.title === "men's clothing" ? '#2BD9AF' : '#FF5E84';
+  const bgColor = category.title === "men's clothing" ? 'bg-[#2BD9AF]' : 'bg-[#FF5E84]';
   return (
     <Link
       to={`categories/${category.link}`}
@@ -13,7 +13,7 @@ const CategoryCard: FC<{ category: CategoryCardProps }> = ({ category }) => {
       style={{ width: '100%' }}
     >
       <div
-        className={`flex h-52 w-full flex-row items-center justify-center rounded-3xl bg-[${bgColor}]`}
+        className={`flex h-52 w-full flex-row items-center justify-center rounded-3xl ${bgColor}`}
       >
         <h2 className='text-3xl font-extrabold capitalize tracking-tight text-white'>
           {category.title}

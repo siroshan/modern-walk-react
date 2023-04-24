@@ -33,11 +33,12 @@
   "devDependencies": {
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",
-    "sass": "^1.59.3",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.1",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

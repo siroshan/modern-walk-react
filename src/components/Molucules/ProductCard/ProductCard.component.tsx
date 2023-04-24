@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { IProduct } from '../../../models/Product';
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
-  const bgColor = product.category === "men's clothing" ? '#2BD9AF' : '#FF5E84';
+  const bgColor = product.category === "men's clothing" ? 'bg-[#2BD9AF]' : 'bg-[#FF5E84]';
 
   return (
     <div
@@ -30,7 +30,7 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
         </div>
       </div>
       <div
-        className={`absolute bottom-0 box-border w-full rounded-3xl p-2 bg-[${bgColor}]`}
+        className={`absolute bottom-0 box-border w-full rounded-3xl p-2 ${bgColor}`}
       >
         <div className='flex flex-col items-center'>
           <div property='price' className='text-blue-700'>
