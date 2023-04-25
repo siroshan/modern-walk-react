@@ -1,5 +1,5 @@
 import Menu from '@mui/material/Menu';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { ProfileMenuProps } from './ProfileMenu.type';
 
 const ProfileMenu: FC<ProfileMenuProps> = ({

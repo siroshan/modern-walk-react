@@ -33,30 +33,14 @@ const NavBarTemplate = () => {
   };
   return (
     <NavBar>
-      <Box position='relative' width={1} height={60}>
-        <Box
-          position='absolute'
-          left='50%'
-          top='50%'
-          style={{ transform: 'translate(-50%, -50%)' }}
-        >
+      <div className='relative h-16 w-full'>
+        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
           <Logo title='Modern Walk' link='/' />
-        </Box>
+        </div>
         {!!UserCTX.user ? (
           <>
-            <Box
-              position='absolute'
-              left='90%'
-              top='50%'
-              style={{ transform: 'translate(-90%, -50%)' }}
-            >
-              <Box
-                borderRadius='50%'
-                width={50}
-                height={50}
-                border={2}
-                borderColor='primary.light'
-              >
+            <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
+              <div className='h-12 w-12 rounded-full border-2'>
                 <IconButton
                   aria-label='more'
                   id='profile-button'
@@ -67,8 +51,8 @@ const NavBarTemplate = () => {
                 >
                   <Person2TwoToneIcon fontSize='large' />
                 </IconButton>
-              </Box>
-            </Box>
+              </div>
+            </div>
             <ProfileMenu
               anchorEl={anchorEl}
               handleClose={handleClose}
@@ -89,18 +73,13 @@ const NavBarTemplate = () => {
             </ProfileMenu>
           </>
         ) : (
-          <Box
-            position='absolute'
-            left='90%'
-            top='50%'
-            style={{ transform: 'translate(-90%, -50%)' }}
-          >
+          <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
             <Link to='/signin'>
               <Button>Sign In</Button>
             </Link>
-          </Box>
+          </div>
         )}
-      </Box>
+      </div>
     </NavBar>
   );
 };
