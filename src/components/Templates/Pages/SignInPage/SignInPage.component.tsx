@@ -12,12 +12,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
-import { useState } from 'react';
-import { ErrorToast } from '../../../Molucules/ErrorToast';
+import { useEffect, useState } from 'react';
 import { CustomError } from '../../../../services/api';
 import { AxiosError } from 'axios';
+import { ToastAction } from '../../../Molucules/Toast/ToastAction';
+import { useToast } from '../../../../config/useToast';
 
 const SignInPage = () => {
+  const { toast } = useToast();
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
   const UserCTX = useUser();
@@ -49,6 +51,17 @@ const SignInPage = () => {
   const onsubmit = async (data: FieldValues) => {
     signIn({ email: data.email, password: data.password });
   };
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: new CustomError(error).message,
+        action: <ToastAction altText='Try again'>Try again</ToastAction>,
+      });
+    }
+  }, [error, isLoading]);
 
   return (
     <>
@@ -132,7 +145,6 @@ const SignInPage = () => {
           </Box>
         </form>
       </Box>
-      {error && !isLoading && <ErrorToast error={error} />}
     </>
   );
 };

@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
-import { ErrorToast } from '../../../Molucules/ErrorToast';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -211,7 +210,6 @@ const SignUpPage = () => {
           </form>
         </Box>
       </MaxWidthLayout>
-      {error && !isLoading && <ErrorToast error={error} />}
     </>
   );
 };

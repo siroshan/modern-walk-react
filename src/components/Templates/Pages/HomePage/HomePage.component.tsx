@@ -8,9 +8,12 @@ import { categories } from '../../../../config/config';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../../services/product';
-import { ErrorToast } from '../../../Molucules/ErrorToast';
+import { ToastAction } from '../../../Molucules/Toast/ToastAction';
+import { CustomError } from '../../../../services/api';
+import { useToast } from '../../../../config/useToast';
 
 const HomePage = () => {
+  const { toast } = useToast();
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const { isLoading, error, data } = useQuery(
@@ -29,7 +32,16 @@ const HomePage = () => {
     }
   }, [isLoading, data]);
 
-  if (error && !isLoading) return <ErrorToast error={error} />;
+  useEffect(()=> {
+    if(error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: new CustomError(error).message ,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+    }
+  },[error, isLoading])
 
   return (
     <>
@@ -45,7 +57,6 @@ const HomePage = () => {
           </Stack>
         </SectionLayout>
       </MaxWidthLayout>
-      {error && !isLoading && <ErrorToast error={error} />}
     </>
   );
 };
