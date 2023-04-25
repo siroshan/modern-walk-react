@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
-import { buttonVariants } from '../Button';
-import { cn } from '../../../lib/utils';
+import { cn } from '../../../../lib/utils';
+import { buttonVariants } from '../../../Atoms/Button';
 
 const AlertDialogCancel = forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,

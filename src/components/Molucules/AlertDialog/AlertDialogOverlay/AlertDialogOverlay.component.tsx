@@ -1,6 +1,6 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { forwardRef } from 'react';
-import { cn } from '../../../lib/utils';
+import { cn } from '../../../../lib/utils';
 
 const AlertDialogOverlay = forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Overlay>,
