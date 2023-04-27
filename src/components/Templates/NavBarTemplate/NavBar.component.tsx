@@ -1,33 +1,18 @@
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
-import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
-import { useState } from 'react';
 import { Logo } from '../../Molucules/Logo';
 import { NavBar } from '../../Organisms/NavBar';
-import { ProfileMenu } from '../../Organisms/ProfileMenu';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { User, UserCog, LogOut } from 'lucide-react';
 import { Button } from '../../../components/Atoms/Button';
 import { useUser } from '../../../context/user';
+import { PopoverContent } from '../../Organisms/Popover/PopoverContent';
+import { Popover } from '../../Organisms/Popover/Popover';
+import { PopoverTrigger } from '../../Organisms/Popover/PopoverTrigger';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const isProfileMenuOpen = Boolean(anchorEl);
   const UserCTX = useUser();
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const handleLogOut = () => {
-    handleClose();
     UserCTX.signOut();
     navigate('/signin');
   };
@@ -38,40 +23,29 @@ const NavBarTemplate = () => {
           <Logo title='Modern Walk' link='/' />
         </div>
         {!!UserCTX.user ? (
-          <>
+          <Popover>
             <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
-              <div className='h-12 w-12 rounded-full border-2'>
-                <IconButton
-                  aria-label='more'
-                  id='profile-button'
-                  aria-controls={isProfileMenuOpen ? 'profile-menu' : undefined}
-                  aria-expanded={isProfileMenuOpen ? 'true' : undefined}
-                  aria-haspopup='true'
-                  onClick={handleClick}
+              <PopoverTrigger asChild>
+                <Button
+                  variant='outline'
+                  className='w-10 rounded-full px-0 py-0'
                 >
-                  <Person2TwoToneIcon fontSize='large' />
-                </IconButton>
-              </div>
+                  <User className='h-4 w-4 fill-black' />
+                  <span className='sr-only'>Open User Menu</span>
+                </Button>
+              </PopoverTrigger>
             </div>
-            <ProfileMenu
-              anchorEl={anchorEl}
-              handleClose={handleClose}
-              isOpen={isProfileMenuOpen}
-            >
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <AccountCircleTwoToneIcon />
-                </ListItemIcon>
+            <PopoverContent align='end' className='grid w-fit gap-2'>
+              <Button variant='ghost' className='text-left'>
+                <UserCog className='mr-2 h-4 w-4' />
                 Profile
-              </MenuItem>
-              <MenuItem onClick={handleLogOut}>
-                <ListItemIcon>
-                  <LogoutTwoToneIcon />
-                </ListItemIcon>
+              </Button>
+              <Button variant='ghost' onClick={handleLogOut}>
+                <LogOut className='mr-2 h-4 w-4' />
                 Logout
-              </MenuItem>
-            </ProfileMenu>
-          </>
+              </Button>
+            </PopoverContent>
+          </Popover>
         ) : (
           <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
             <Link to='/signin'>
