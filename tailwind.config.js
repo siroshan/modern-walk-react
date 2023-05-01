@@ -21,7 +21,21 @@ module.exports = {
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          hover: "hsl(var(--primary-hover))",
+          selected: "hsl(var(--primary-selected))",
+          disabled:{
+            DEFAULT: "hsl(var(--primary-disabled))",
+            selected: "hsl(var(--primary-disabled-selected))"
+          },
           foreground: "hsl(var(--primary-foreground))",
+        },
+        danger: {
+          DEFAULT: "hsl(var(--danger-red))",
+          glow: "hsl(var(--danger-glow))",
+          inactive: "hsl(var(--danger-inactive))",
+          disabled: "hsl(var(--danger-disabled))",
+          hover: "hsl(var(--danger-hover))",
+          active: "hsl(var(--danger-active))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -49,6 +63,7 @@ module.exports = {
         },
       },
       borderRadius: {
+        DEFAULT: 'var(--radius)',
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
@@ -70,6 +85,9 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        DEFAULT: '0px 4px 6px rgba(1, 5, 93, 0.15)'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

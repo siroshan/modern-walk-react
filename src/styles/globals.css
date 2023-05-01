@@ -7,6 +7,32 @@
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
 
+    --background-elephant-grey: 220 23% 95%;
+    --background-elephant-contrast: 220 23% 95%;
+    --background-elephant-white: 220 23% 95%;
+
+    --primary: 29 84% 52%;
+    --primary-hover: 29 98% 48%;
+    --primary-selected: 29 100% 41%;
+    --primary-disabled: 29 84% 81%;
+    --primary-disabled-selected: 29 71% 73%;
+
+    --typography: 219 100% 14%;
+    --typography-active-border: 219 16% 56%;
+    --typography-inactive-border: 220 15% 81%;
+
+    --link-blue: 231 97% 70%;
+    --link-hover: 231 55% 57%;
+    --link-active: 231 51% 50%;
+    --link-disabled:229 53% 77%;
+
+    --danger-red: 353 76% 52%;
+    --danger-glow: 353 70% 77%;
+    --danger-inactive: 353 76% 76%;
+    --danger-disabled: 354 76% 90%;
+    --danger-hover: 353 83% 41%;
+    --danger-active: 353 98% 31%;
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
@@ -19,7 +45,6 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
-    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -33,7 +58,7 @@
 
     --ring: 215 20.2% 65.1%;
 
-    --radius: 0.5rem;
+    --radius: 8px;
   }
 
   .dark {
@@ -66,7 +91,7 @@
 
     --ring: 216 34% 17%;
 
-    --radius: 0.5rem;
+    --radius: 8px;
   }
 }
 
