@@ -12,6 +12,7 @@ import { Label } from '../../../Atoms/Label';
 import { Input } from '../../../Atoms/Input';
 import { PasswordInput } from '../../../Molucules/PasswordInput';
 import { Button } from '../../../Atoms/Button';
+import { Checkbox } from '../../../Molucules/Checkbox';
 
 const SignInPage = () => {
   const { toast } = useToast();
@@ -87,9 +88,7 @@ const SignInPage = () => {
             />
           </div>
           <div className='mb-4'>
-            <Label htmlFor='password'>
-                Password
-            </Label>
+            <Label htmlFor='password'>Password</Label>
             <Controller
               name='password'
               control={control}
@@ -114,6 +113,10 @@ const SignInPage = () => {
             </Link>
           </div>
           <div className='mt-8 flex flex-row justify-between text-center'>
+            <div className='flex flex-row items-center'>
+              <Checkbox name='rememberMe'/>
+              <Label htmlFor='rememberMe'>Remember me</Label>
+            </div>
             <Button type='submit' variant='default' disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
