@@ -22,15 +22,15 @@ const NavBarTemplate = () => {
         <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
           <Logo title='Modern Walk' link='/' />
         </div>
-        {!!UserCTX.user ? (
+        {!UserCTX.user ? (
           <Popover>
             <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
               <PopoverTrigger asChild>
                 <Button
                   variant='outline'
-                  className='h-10 w-10 rounded-full px-0'
+                  className='group h-10 w-10 px-0 border-0'
                 >
-                  <User className='h-4 w-4' />
+                  <User className='h-4 w-4 group-hover:fill-primary-hover group-focus:fill-primary-hover' />
                   <span className='sr-only'>Open User Menu</span>
                 </Button>
               </PopoverTrigger>
