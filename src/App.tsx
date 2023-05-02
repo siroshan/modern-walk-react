@@ -1,5 +1,4 @@
-import './styles/app.scss';
-import './styles/globals.scss';
+import './styles/globals.css';
 import { NavBarTemplate } from './components/Templates/NavBarTemplate';
 import { Routes, Route } from 'react-router-dom';
 import { HomePage } from './components/Templates/Pages/HomePage';

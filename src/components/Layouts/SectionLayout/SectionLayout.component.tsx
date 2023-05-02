@@ -6,14 +6,12 @@ import { SectionLayoutProps } from './SectionLayout.type';
 
 const SectionLayout: FC<SectionLayoutProps> = ({ children, heading }) => {
   return (
-    <Box mt={4}>
-      <Typography variant='h4' textTransform='capitalize' mb={4}>
+    <div className='mt-8'>
+      <h2 className='mb-8 scroll-m-20 text-3xl font-extrabold tracking-tight'>
         {heading}
-      </Typography>
-      <Box>
-        {children}
-      </Box>
-    </Box>
+      </h2>
+      <div>{children}</div>
+    </div>
   );
 };
 

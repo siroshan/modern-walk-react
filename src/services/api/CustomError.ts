@@ -1,46 +1,41 @@
 import { AxiosError } from 'axios';
 
+enum ErrorMessages {
+  badRequest = 'Invalid Request! pleach check the inputs.',
+  unauthorized = 'Your session has expired. Please sign in again!',
+  notFound = 'Requested resource not found!',
+  serverError = 'Sorry something went wrong from our side, please try again.',
+  default = 'Sorry something went wrong from our side, please try again.',
+}
+
 export class CustomError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(error: unknown | string) {
+    super();
+    if (typeof error === 'string') {
+      this.message = error;
+    } else {
+      this.message = this.getMessage(error);
+    }
     Object.setPrototypeOf(this, CustomError.prototype);
   }
 
-  public static fromAxiosError(error: unknown) {
+  getMessage(error: unknown): string {
     const err = error as AxiosError;
+    switch (err?.response?.status) {
+      case 400:
+        return ErrorMessages.badRequest;
 
-    if (!err.isAxiosError) {
-      return new CustomError(
-        'Sorry something went wrong from our side, please try again'
-      );
-    }
-    if (err.code === 'ERR_NETWORK') {
-      return new CustomError(
-        'Sorry something went wrong from our side, please try again'
-      );
-    }
-    if (err.response) {
-      switch (err.response.status) {
-        case 400:
-          return new CustomError('Bad Request');
+      case 401:
+        return ErrorMessages.unauthorized;
 
-        case 401:
-          return new CustomError(
-            'Your session has expired. Please sign in again!'
-          );
+      case 404:
+        return ErrorMessages.notFound;
 
-        case 404:
-          return new CustomError('Requested resource not found!');
+      case 500:
+        return ErrorMessages.serverError;
 
-        case 500:
-          return new CustomError(
-            'Sorry something went wrong from our side, please try again'
-          );
-        default:
-          return new CustomError(
-            'Sorry something went wrong from our side, please try again'
-          );
-      }
+      default:
+        return ErrorMessages.default;
     }
   }
 }

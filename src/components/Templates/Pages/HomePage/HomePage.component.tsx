@@ -8,9 +8,12 @@ import { categories } from '../../../../config/config';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../../services/product';
-import { ErrorToast } from '../../../Molucules/ErrorToast';
+import { ToastAction } from '../../../Molucules/Toast/ToastAction';
+import { CustomError } from '../../../../services/api';
+import { useToast } from '../../../../config/useToast';
 
 const HomePage = () => {
+  const { toast } = useToast();
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const { isLoading, error, data } = useQuery(
@@ -25,25 +28,36 @@ const HomePage = () => {
           prod.category === "men's clothing" ||
           prod.category === "women's clothing"
       );
-      setProducts(products);
+      setProducts(products.slice(0, 4));
     }
   }, [isLoading, data]);
 
-  if(error && !isLoading) return (<ErrorToast error={error}/>)
+  useEffect(()=> {
+    if(error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: new CustomError(error).message ,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+    }
+  },[error, isLoading])
 
   return (
-    <MaxWidthLayout>
-      <SectionLayout heading='Flash Sale'>
-        <ProductCardContainer products={products} isLoading={isLoading} />
-      </SectionLayout>
-      <SectionLayout heading='Categories'>
-        <Stack direction='row' alignItems='center' spacing={4} width={1}>
-          {categories.map((category, i) => (
-            <CategoryCard key={i} category={category} />
-          ))}
-        </Stack>
-      </SectionLayout>
-    </MaxWidthLayout>
+    <>
+      <MaxWidthLayout>
+        <SectionLayout heading='Flash Sale'>
+          <ProductCardContainer products={products} isLoading={isLoading} />
+        </SectionLayout>
+        <SectionLayout heading='Categories'>
+          <Stack direction='row' alignItems='center' spacing={4} width={1}>
+            {categories.map((category, i) => (
+              <CategoryCard key={i} category={category} />
+            ))}
+          </Stack>
+        </SectionLayout>
+      </MaxWidthLayout>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/user';
+import { Toaster } from './components/Templates/Toaster/Toaster.component';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,6 +19,7 @@ root.render(
       <BrowserRouter>
         <UserProvider>
           <App />
+          <Toaster />
         </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>
