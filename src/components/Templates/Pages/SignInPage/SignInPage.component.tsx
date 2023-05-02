@@ -1,12 +1,4 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
@@ -14,9 +6,12 @@ import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
 import { useEffect, useState } from 'react';
 import { CustomError } from '../../../../services/api';
-import { AxiosError } from 'axios';
 import { ToastAction } from '../../../Molucules/Toast/ToastAction';
 import { useToast } from '../../../../config/useToast';
+import { Label } from '../../../Atoms/Label';
+import { Input } from '../../../Atoms/Input';
+import { PasswordInput } from '../../../Molucules/PasswordInput';
+import { Button } from '../../../Atoms/Button';
 
 const SignInPage = () => {
   const { toast } = useToast();
@@ -49,6 +44,7 @@ const SignInPage = () => {
   });
 
   const onsubmit = async (data: FieldValues) => {
+    console.log('submit clicked');
     signIn({ email: data.email, password: data.password });
   };
 
@@ -65,18 +61,13 @@ const SignInPage = () => {
 
   return (
     <>
-      <Box maxWidth={400} mx='auto' width={1}>
-        <form onSubmit={handleSubmit(onsubmit)}>
-          <Typography
-            variant='h4'
-            marginBottom={6}
-            textAlign='center'
-            mt={8}
-            mb={4}
-          >
-            Welcome Back
-          </Typography>
-          <Box mb={2}>
+      <div className='mx-auto max-w-sm'>
+        <form onSubmit={handleSubmit(onsubmit)} className='mt-10'>
+          <h4 className='mb-8 scroll-m-20 text-center text-4xl font-bold tracking-tight'>
+            Modern Walk
+          </h4>
+          <div className='mb-4'>
+            <Label htmlFor='email'>Email Address</Label>
             <Controller
               name='email'
               control={control}
@@ -84,19 +75,21 @@ const SignInPage = () => {
                 required: 'Please enter E-mail.',
               }}
               render={({ field }) => (
-                <TextField
+                <Input
                   {...field}
-                  fullWidth
-                  size='small'
-                  label='E-mail'
-                  variant='outlined'
+                  type='email'
+                  id='email'
+                  placeholder='elon@tesla.com'
                   error={!!errors.email}
                   helperText={errors.email && String(errors.email.message)}
                 />
               )}
             />
-          </Box>
-          <Box mb={2} width={1}>
+          </div>
+          <div className='mb-4'>
+            <Label htmlFor='password'>
+                Password
+            </Label>
             <Controller
               name='password'
               control={control}
@@ -105,25 +98,10 @@ const SignInPage = () => {
                 required: 'Please password.',
               }}
               render={({ field }) => (
-                <TextField
+                <PasswordInput
                   {...field}
-                  fullWidth
-                  label='Password'
-                  type={showPwd ? undefined : 'password'}
-                  size='small'
-                  variant='outlined'
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position='end'>
-                        <IconButton
-                          edge='end'
-                          onClick={() => setShowPwd((s) => !s)}
-                        >
-                          {showPwd ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  isShow={showPwd}
+                  setIsShow={setShowPwd}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password && String(errors.password.message)
@@ -131,20 +109,17 @@ const SignInPage = () => {
                 />
               )}
             />
-            <Link to='/forgot-password' className='link'>
+            <Link to='/forgot-password' className='link text-primary'>
               Forgot password?
             </Link>
-          </Box>
-          <Box width={1} textAlign='center' mb={8} mt={4}>
-            <Button type='submit' variant='contained' disabled={isLoading}>
+          </div>
+          <div className='mt-8 flex flex-row justify-between text-center'>
+            <Button type='submit' variant='default' disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
-            <Box mt={4}>
-              <Link to='/signup'>New here? Create Account.</Link>
-            </Box>
-          </Box>
+          </div>
         </form>
-      </Box>
+      </div>
     </>
   );
 };

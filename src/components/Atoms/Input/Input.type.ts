@@ -1,2 +1,5 @@
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  error: boolean;
+  helperText?: string;
+}
