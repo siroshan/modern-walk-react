@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -24,7 +26,7 @@
     --link-blue: 231 97% 70%;
     --link-hover: 231 55% 57%;
     --link-active: 231 51% 50%;
-    --link-disabled:229 53% 77%;
+    --link-disabled: 229 53% 77%;
 
     --danger-red: 353 76% 52%;
     --danger-glow: 353 70% 77%;
@@ -107,9 +109,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Quicksand', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
