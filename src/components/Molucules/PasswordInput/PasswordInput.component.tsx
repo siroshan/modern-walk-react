@@ -10,14 +10,14 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
         <input
           type={isShow ? undefined : 'password'}
           className={cn(
-            'placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+            'w-full placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
             className
           )}
           ref={ref}
           {...props}
         />
         <button
-          className='rounded-full'
+          className='w-fit rounded-full'
           type='button'
           onClick={() => setIsShow((s) => !s)}
         >

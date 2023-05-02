@@ -22,7 +22,7 @@ const NavBarTemplate = () => {
         <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
           <Logo title='Modern Walk' link='/' />
         </div>
-        {!UserCTX.user ? (
+        {!!UserCTX.user ? (
           <Popover>
             <div className='absolute left-[90%] top-1/2 -translate-x-[90%] -translate-y-1/2'>
               <PopoverTrigger asChild>
