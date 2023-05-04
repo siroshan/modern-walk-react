@@ -1,5 +1,5 @@
 import { IUser } from '../../models/User';
-import { axiosUserInstance, CustomError } from '../api';
+import { axiosUserInstance } from '../api';
 
 export const createUser = async (user: IUser): Promise<IUser> => {
   try {
@@ -7,7 +7,7 @@ export const createUser = async (user: IUser): Promise<IUser> => {
     return data;
   } catch (err) {
     console.log('error', err);
-    throw CustomError.fromAxiosError(err);
+    throw err;
   }
 };
 
@@ -17,6 +17,6 @@ export const getUser = async (email: string): Promise<IUser> => {
     return data[0];
   } catch (err) {
     console.log('error', err);
-    throw CustomError.fromAxiosError(err);
+    throw err;
   }
 };

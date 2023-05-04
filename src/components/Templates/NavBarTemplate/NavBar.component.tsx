@@ -27,35 +27,47 @@ const NavBarTemplate = () => {
   };
 
   const handleLogOut = () => {
-    handleClose()
+    handleClose();
     UserCTX.signOut();
     navigate('/signin');
   };
   return (
     <NavBar>
-      <Stack direction='row' justifyContent='space-between' alignItems='center'>
-        <Stack direction='row' justifyContent='space-between'>
+      <Box position='relative' width={1} height={60}>
+        <Box
+          position='absolute'
+          left='50%'
+          top='50%'
+          style={{ transform: 'translate(-50%, -50%)' }}
+        >
           <Logo title='Modern Walk' link='/' />
-        </Stack>
+        </Box>
         {!!UserCTX.user ? (
           <>
             <Box
-              borderRadius='50%'
-              width={50}
-              height={50}
-              border={2}
-              borderColor='primary.light'
+              position='absolute'
+              left='90%'
+              top='50%'
+              style={{ transform: 'translate(-90%, -50%)' }}
             >
-              <IconButton
-                aria-label='more'
-                id='profile-button'
-                aria-controls={isProfileMenuOpen ? 'profile-menu' : undefined}
-                aria-expanded={isProfileMenuOpen ? 'true' : undefined}
-                aria-haspopup='true'
-                onClick={handleClick}
+              <Box
+                borderRadius='50%'
+                width={50}
+                height={50}
+                border={2}
+                borderColor='primary.light'
               >
-                <Person2TwoToneIcon fontSize='large' />
-              </IconButton>
+                <IconButton
+                  aria-label='more'
+                  id='profile-button'
+                  aria-controls={isProfileMenuOpen ? 'profile-menu' : undefined}
+                  aria-expanded={isProfileMenuOpen ? 'true' : undefined}
+                  aria-haspopup='true'
+                  onClick={handleClick}
+                >
+                  <Person2TwoToneIcon fontSize='large' />
+                </IconButton>
+              </Box>
             </Box>
             <ProfileMenu
               anchorEl={anchorEl}
@@ -77,11 +89,18 @@ const NavBarTemplate = () => {
             </ProfileMenu>
           </>
         ) : (
-          <Link to='/signin'>
-            <Button variant='contained'>Sign In</Button>
-          </Link>
+          <Box
+            position='absolute'
+            left='90%'
+            top='50%'
+            style={{ transform: 'translate(-90%, -50%)' }}
+          >
+            <Link to='/signin'>
+              <Button variant='contained'>Sign In</Button>
+            </Link>
+          </Box>
         )}
-      </Stack>
+      </Box>
     </NavBar>
   );
 };

@@ -1,5 +1,5 @@
 import { IProduct } from '../../models/Product';
-import { axiosProductInstance, CustomError } from '../api';
+import { axiosProductInstance } from '../api';
 
 export const getProducts = async (): Promise<IProduct[]> => {
   try {
@@ -7,7 +7,7 @@ export const getProducts = async (): Promise<IProduct[]> => {
     return data;
   } catch (err) {
     console.log('error', err);
-    throw CustomError.fromAxiosError(err);
+    throw err;
   }
 };
 
@@ -21,6 +21,6 @@ export const getProductsByCategory = async (
     return data;
   } catch (err) {
     console.log('error', err);
-    throw CustomError.fromAxiosError(err);
+    throw err;
   }
 };

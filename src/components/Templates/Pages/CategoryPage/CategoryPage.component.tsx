@@ -28,11 +28,14 @@ const CategoryPage = () => {
   if (error && !isLoading) return <ErrorToast error={error} />;
 
   return (
-    <MaxWidthLayout>
-      <SectionLayout heading={category?.title || ''}>
-        <ProductCardContainer products={products} isLoading={isLoading} />
-      </SectionLayout>
-    </MaxWidthLayout>
+    <>
+      <MaxWidthLayout>
+        <SectionLayout heading={category?.title || ''}>
+          <ProductCardContainer products={products} isLoading={isLoading} />
+        </SectionLayout>
+      </MaxWidthLayout>
+      {error && !isLoading && <ErrorToast error={error} />}
+    </>
   );
 };
 
