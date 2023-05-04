@@ -1,5 +1,13 @@
 # modern-walk-react
 
+## 1.1.1
+
+### Patch Changes
+
+- 2e9d977: - Disabled submit button and displays loading message while loading in sign in and sign up page
+  - Centered logo in navigation bar
+  - Limited the amount of products displayed in flash sale to four
+
 ## 1.1.0
 
 ### Minor Changes
