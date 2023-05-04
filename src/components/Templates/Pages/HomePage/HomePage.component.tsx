@@ -29,8 +29,6 @@ const HomePage = () => {
     }
   }, [isLoading, data]);
 
-  if (error && !isLoading) return <ErrorToast error={error} />;
-
   return (
     <>
       <MaxWidthLayout>
