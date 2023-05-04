@@ -7,13 +7,13 @@ import { useUser } from '../../../../context/user';
 import { useEffect, useState } from 'react';
 import { CustomError } from '../../../../services/api';
 import { ToastAction } from '../../../Molucules/Toast/ToastAction';
-import { useToast } from '../../../../config/useToast';
 import { Label } from '../../../Atoms/Label';
 import { Input } from '../../../Molucules/Input';
 import { PasswordInput } from '../../../Molucules/PasswordInput';
 import { Button } from '../../../Atoms/Button';
 import { Checkbox } from '../../../Molucules/Checkbox';
 import { Typography } from '../../../Atoms/Typography';
+import { useToast } from '../../../Organisms/Toast/Toaster';
 
 const SignInPage = () => {
   const { toast } = useToast();

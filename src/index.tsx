@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/user';
-import { Toaster } from './components/Templates/Toaster/Toaster.component';
+import { Toaster } from './components/Organisms/Toast/Toaster';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

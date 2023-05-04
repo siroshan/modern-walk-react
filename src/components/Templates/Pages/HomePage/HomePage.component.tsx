@@ -10,7 +10,7 @@ import { useQuery } from 'react-query';
 import { ProductService } from '../../../../services/product';
 import { ToastAction } from '../../../Molucules/Toast/ToastAction';
 import { CustomError } from '../../../../services/api';
-import { useToast } from '../../../../config/useToast';
+import { useToast } from '../../../Organisms/Toast/Toaster';
 
 const HomePage = () => {
   const { toast } = useToast();

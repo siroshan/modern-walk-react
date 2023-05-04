@@ -8,7 +8,7 @@ import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { ProductService } from '../../../../services/product';
 import { useQuery } from 'react-query';
-import { useToast } from '../../../../config/useToast';
+import { useToast } from '../../../Organisms/Toast/Toaster/useToast';
 import { ToastAction } from '../../../Molucules/Toast/ToastAction';
 import { CustomError } from '../../../../services/api';
 

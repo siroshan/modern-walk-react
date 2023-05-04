@@ -1,6 +1,6 @@
 import * as React from "react"
-import { ToastActionElement } from "../components/Molucules/Toast/ToastAction"
-import { ToastProps } from "../components/Molucules/Toast/Toast"
+import { ToastActionElement } from "../../../Molucules/Toast/ToastAction"
+import { ToastProps } from "../../../Molucules/Toast/Toast"
  
  
 const TOAST_LIMIT = 1
