@@ -1,15 +1,13 @@
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import { FC } from 'react';
 import { SectionLayoutProps } from './SectionLayout.type';
+import { Typography } from '../../Atoms/Typography';
 
 const SectionLayout: FC<SectionLayoutProps> = ({ children, heading }) => {
   return (
     <div className='mt-8'>
-      <h2 className='mb-8 scroll-m-20 text-3xl font-extrabold tracking-tight'>
+      <Typography variant='h2' className='mb-8'>
         {heading}
-      </h2>
+      </Typography>
       <div>{children}</div>
     </div>
   );

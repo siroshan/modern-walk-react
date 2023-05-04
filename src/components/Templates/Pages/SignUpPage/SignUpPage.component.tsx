@@ -1,6 +1,5 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -10,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
+import { Typography } from '../../../Atoms/Typography';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -50,14 +50,7 @@ const SignUpPage = () => {
       <MaxWidthLayout>
         <Box maxWidth={400} width={1} mx='auto'>
           <form onSubmit={handleSubmit(onsubmit)}>
-            <Typography
-              variant='h3'
-              color='primary'
-              marginBottom={6}
-              textAlign='center'
-              mt={8}
-              mb={4}
-            >
+            <Typography variant='h1' className='text-center'>
               Create Account
             </Typography>
             <Box mb={2}>
