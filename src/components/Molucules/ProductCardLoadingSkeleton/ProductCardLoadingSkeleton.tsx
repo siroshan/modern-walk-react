@@ -1,5 +1,4 @@
 import { Skeleton } from '../../Atoms/Skeleton';
-import Stack from '@mui/material/Stack';
 import { FC } from 'react';
 
 const ProductCardLoadingSkeleton: FC = () => {

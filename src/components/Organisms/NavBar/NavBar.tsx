@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import { FC, ReactNode } from 'react';
 
 const NavBar: FC<{ children: ReactNode }> = ({ children }) => {

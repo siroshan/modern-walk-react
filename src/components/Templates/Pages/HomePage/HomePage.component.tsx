@@ -50,11 +50,11 @@ const HomePage = () => {
           <ProductCardContainer products={products} isLoading={isLoading} />
         </SectionLayout>
         <SectionLayout heading='Categories'>
-          <Stack direction='row' alignItems='center' spacing={4} width={1}>
+          <div className='w-full grid grid-cols-2 items-center justify-center gap-5'>
             {categories.map((category, i) => (
               <CategoryCard key={i} category={category} />
             ))}
-          </Stack>
+          </div>
         </SectionLayout>
       </MaxWidthLayout>
     </>
