@@ -62,67 +62,65 @@ const SignInPage = () => {
   }, [error, isLoading]);
 
   return (
-    <>
-      <div className='mx-auto max-w-sm'>
-        <form onSubmit={handleSubmit(onsubmit)} className='mt-10'>
-          <Typography variant='h1' className='text-center'>Modern Walk</Typography>
-          <div className='mb-4'>
-            <Label htmlFor='email'>Email Address</Label>
-            <Controller
-              name='email'
-              control={control}
-              rules={{
-                required: 'Please enter E-mail.',
-              }}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  type='email'
-                  id='email'
-                  placeholder='elon@tesla.com'
-                  error={!!errors.email}
-                  helperText={errors.email && String(errors.email.message)}
-                />
-              )}
-            />
+    <div className='mx-auto max-w-sm'>
+      <form onSubmit={handleSubmit(onsubmit)} className='mt-10'>
+        <Typography variant='h1' className='text-center'>
+          Modern Walk
+        </Typography>
+        <div className='mb-4'>
+          <Label htmlFor='email'>Email Address</Label>
+          <Controller
+            name='email'
+            control={control}
+            rules={{
+              required: 'Please enter E-mail.',
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                type='email'
+                id='email'
+                placeholder='elon@tesla.com'
+                error={!!errors.email}
+                helperText={errors.email && String(errors.email.message)}
+              />
+            )}
+          />
+        </div>
+        <div className='mb-4'>
+          <Label htmlFor='password'>Password</Label>
+          <Controller
+            name='password'
+            control={control}
+            defaultValue=''
+            rules={{
+              required: 'Please password.',
+            }}
+            render={({ field }) => (
+              <PasswordInput
+                {...field}
+                isShow={showPwd}
+                setIsShow={setShowPwd}
+                error={Boolean(errors.password)}
+                helperText={errors.password && String(errors.password.message)}
+              />
+            )}
+          />
+          <Link to='/forgot-password' className='link text-primary'>
+            Forgot password?
+          </Link>
+        </div>
+        <div className='mt-8 flex flex-row justify-between text-center'>
+          <div className='flex flex-row items-center'>
+            <Checkbox name='rememberMe' />
+            <Label htmlFor='rememberMe'>Remember me</Label>
           </div>
-          <div className='mb-4'>
-            <Label htmlFor='password'>Password</Label>
-            <Controller
-              name='password'
-              control={control}
-              defaultValue=''
-              rules={{
-                required: 'Please password.',
-              }}
-              render={({ field }) => (
-                <PasswordInput
-                  {...field}
-                  isShow={showPwd}
-                  setIsShow={setShowPwd}
-                  error={Boolean(errors.password)}
-                  helperText={
-                    errors.password && String(errors.password.message)
-                  }
-                />
-              )}
-            />
-            <Link to='/forgot-password' className='link text-primary'>
-              Forgot password?
-            </Link>
-          </div>
-          <div className='mt-8 flex flex-row justify-between text-center'>
-            <div className='flex flex-row items-center'>
-              <Checkbox name='rememberMe' />
-              <Label htmlFor='rememberMe'>Remember me</Label>
-            </div>
-            <Button type='submit' variant='default' disabled={isLoading}>
-              {isLoading ? 'Loading...' : 'Sign In'}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </>
+          <Button type='submit' variant='default' disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Sign In'}
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

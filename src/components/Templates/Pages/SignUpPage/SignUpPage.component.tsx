@@ -1,15 +1,18 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
 import { useRef } from 'react';
-import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
+import { ToastAction } from '../../../Molucules/Toast/ToastAction';
+import { Label } from '../../../Atoms/Label';
+import { Input } from '../../../Molucules/Input';
+import { PasswordInput } from '../../../Molucules/PasswordInput';
+import { Button } from '../../../Atoms/Button';
+import { Checkbox } from '../../../Molucules/Checkbox';
 import { Typography } from '../../../Atoms/Typography';
+import { useToast } from '../../../Organisms/Toast/Toaster';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -46,164 +49,141 @@ const SignUpPage = () => {
   };
 
   return (
-    <>
-      <MaxWidthLayout>
-        <Box maxWidth={400} width={1} mx='auto'>
-          <form onSubmit={handleSubmit(onsubmit)}>
-            <Typography variant='h1' className='text-center'>
-              Create Account
-            </Typography>
-            <Box mb={2}>
-              <Controller
-                name='firstName'
-                control={control}
-                rules={{
-                  required: 'Please enter first name',
-                  maxLength: {
-                    value: 100,
-                    message: 'First Name is too lengthy',
-                  },
-                  pattern: {
-                    value: /^[a-zA-z ,.'-]+$/,
-                    message: 'Please enter valid first name',
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    size='small'
-                    label='First Name'
-                    variant='outlined'
-                    error={!!errors.firstName}
-                    helperText={
-                      errors.firstName ? String(errors.firstName.message) : null
-                    }
-                  />
-                )}
+    <div className='mx-auto max-w-sm'>
+      <form onSubmit={handleSubmit(onsubmit)} autoComplete='off'>
+        <Typography variant='h1' className='text-center'>
+          Create Account
+        </Typography>
+        <div className='mb-4'>
+          <Label htmlFor='firstName'>First Name</Label>
+          <Controller
+            name='firstName'
+            control={control}
+            rules={{
+              required: 'Please enter first name',
+              maxLength: {
+                value: 100,
+                message: 'First Name is too lengthy',
+              },
+              pattern: {
+                value: /^[a-zA-z ,.'-]+$/,
+                message: 'Please enter valid first name',
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                error={!!errors.firstName}
+                helperText={
+                  errors.firstName && String(errors.firstName.message)
+                }
               />
-            </Box>
-            <Box mb={2}>
-              <Controller
-                name='lastName'
-                control={control}
-                rules={{
-                  required: 'Please enter last name',
-                  pattern: {
-                    value: /^[a-zA-Z ,.'-]+$/,
-                    message: 'Please enter valid last name',
-                  },
-                }}
-                defaultValue=''
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label='Last Name'
-                    size='small'
-                    error={!!errors.lastName}
-                    helperText={
-                      errors.lastName ? String(errors.lastName.message) : null
-                    }
-                  />
-                )}
+            )}
+          />
+        </div>
+        <div className='mb-4'>
+          <Label htmlFor='lastName'>Last Name</Label>
+          <Controller
+            name='lastName'
+            control={control}
+            rules={{
+              required: 'Please enter last name',
+              pattern: {
+                value: /^[a-zA-Z ,.'-]+$/,
+                message: 'Please enter valid last name',
+              },
+            }}
+            defaultValue=''
+            render={({ field }) => (
+              <Input
+                {...field}
+                error={!!errors.lastName}
+                helperText={errors.lastName && String(errors.lastName.message)}
               />
-            </Box>
-            <Box mb={2}>
-              <Controller
-                name='email'
-                control={control}
-                rules={{
-                  required: 'Please enter e-mail.',
-                  pattern: {
-                    value:
-                      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: 'Please enter valid e-mail',
-                  },
-                }}
-                defaultValue=''
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label='E-mail address'
-                    size='small'
-                    error={!!errors.email}
-                    helperText={
-                      errors.email ? String(errors.email.message) : null
-                    }
-                  />
-                )}
+            )}
+          />
+        </div>
+        <div className='mb-4'>
+          <Label htmlFor='email'>Email Address</Label>
+          <Controller
+            name='email'
+            control={control}
+            rules={{
+              required: 'Please enter E-mail.',
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                type='email'
+                id='email'
+                placeholder='elon@tesla.com'
+                error={!!errors.email}
+                helperText={errors.email && String(errors.email.message)}
               />
-            </Box>
-            <Box mb={2}>
-              <Controller
+            )}
+          />
+        </div>
+        <div className='mb-4'>
+          <Label htmlFor='email'>Password</Label>
+          <Controller
+            name='password'
+            control={control}
+            defaultValue=''
+            rules={{
+              required: 'Please enter password',
+              maxLength: {
+                value: 32,
+                message: 'password is too lengthy',
+              },
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  'Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character',
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
                 name='password'
-                control={control}
-                defaultValue=''
-                rules={{
-                  required: 'Please enter password',
-                  maxLength: {
-                    value: 32,
-                    message: 'password is too lengthy',
-                  },
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message:
-                      'Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character',
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    name='password'
-                    fullWidth
-                    type='password'
-                    label='Password'
-                    size='small'
-                    error={!!errors.password}
-                    helperText={
-                      errors.password ? String(errors.password.message) : null
-                    }
-                  />
-                )}
+                type='password'
+                error={!!errors.password}
+                helperText={errors.password && String(errors.password.message)}
               />
-            </Box>
-            <Box mb={2}>
-              <Controller
-                name='cpassword'
-                control={control}
-                rules={{
-                  required: 'Please re-enter passoword',
-                  validate: (value) =>
-                    value === password.current || 'The passwords do not match',
-                }}
-                defaultValue=''
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    type='password'
-                    label='Confirm Password'
-                    size='small'
-                    error={!!errors.cpassword}
-                    helperText={
-                      errors.cpassword ? String(errors.cpassword.message) : null
-                    }
-                  />
-                )}
+            )}
+          />
+        </div>
+        <div className='mb-4'>
+          <Label htmlFor='email'>Confirm Password</Label>
+          <Controller
+            name='cpassword'
+            control={control}
+            rules={{
+              required: 'Please re-enter passoword',
+              validate: (value) =>
+                value === password.current || 'The passwords do not match',
+            }}
+            defaultValue=''
+            render={({ field }) => (
+              <Input
+                {...field}
+                type='password'
+                error={!!errors.cpassword}
+                helperText={
+                  errors.cpassword && String(errors.cpassword.message)
+                }
               />
-            </Box>
-            <Box width={1} textAlign='center' mb={8} mt={4}>
-              <Button type='submit' variant='contained' disabled={isLoading}>
-                {isLoading ? 'Loading...' : 'Sign Up'}
-              </Button>
-            </Box>
-          </form>
-        </Box>
-      </MaxWidthLayout>
-    </>
+            )}
+          />
+        </div>
+        <div className='mt-8 text-center'>
+          <Button type='submit' variant='default' disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Sign In'}
+          </Button>
+        </div>
+        ˝
+      </form>
+    </div>
   );
 };
 
