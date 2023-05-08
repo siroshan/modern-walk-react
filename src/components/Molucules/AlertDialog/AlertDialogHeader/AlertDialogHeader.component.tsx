@@ -1,4 +1,4 @@
-import { cn } from "../../../../lib/utils";
+import { cn } from '../../../../lib/utils';
 
 const AlertDialogHeader = ({
   className,
@@ -6,7 +6,7 @@ const AlertDialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col space-y-2 text-center sm:text-left',
+      'flex flex-col space-y-2 p-6 text-center sm:text-left',
       className
     )}
     {...props}

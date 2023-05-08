@@ -7,11 +7,19 @@ import { useUser } from '../../../context/user';
 import { PopoverContent } from '../../Molucules/Popover/PopoverContent';
 import { Popover } from '../../Organisms/Popover';
 import { PopoverTrigger } from '../../Molucules/Popover/PopoverTrigger';
-import { Typography } from '../../Atoms/Typography';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../services/product';
 import { PopoverClose } from '../../Molucules/Popover/PopoverClose';
 import { CartProductCard } from '../../Molucules/CartProductCard';
+import { AlertDialogHeader } from '../../Molucules/AlertDialog/AlertDialogHeader';
+import { AlertDialog } from '../../Molucules/AlertDialog/AlertDialog';
+import AlertDialogTrigger from '../../Molucules/AlertDialog/AlertDialogTrigger/AlertDialogTrigger.component';
+import { AlertDialogContent } from '../../Molucules/AlertDialog/AlertDialogContent';
+import { AlertDialogTitle } from '../../Molucules/AlertDialog/AlertDialogTitle';
+import { AlertDialogDescription } from '../../Molucules/AlertDialog/AlertDialogDescription';
+import { AlertDialogCancel } from '../../Molucules/AlertDialog/AlertDialogCancel';
+import { AlertDialogAction } from '../../Molucules/AlertDialog/AlertDialogAction';
+import { AlertDialogFooter } from '../../Molucules/AlertDialog/AlertDialogFooter';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
@@ -41,7 +49,7 @@ const NavBarTemplate = () => {
                   className='group mr-4 h-10 w-10 border-0 px-0'
                 >
                   <ShoppingCart className='h-4 w-4 group-hover:fill-primary-hover group-focus:fill-primary-hover' />
-                  <span className='sr-only'>Open User Menu</span>
+                  <span className='sr-only'>Open User Cart</span>
                 </Button>
               </PopoverTrigger>
               <PopoverContent align='end' className='p-0'>
@@ -60,9 +68,27 @@ const NavBarTemplate = () => {
                   </div>
                   <div className='rounded-b-2xl bg-gray-50 p-2'>
                     <div className='grid grid-cols-2 gap-4'>
-                      <Button variant='dotted' size='sm'>
-                        Clear
-                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant='dotted' size='sm'>
+                            Clear
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Clear Cart</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              All items iin your cart will be removed! Please
+                              confirm to proceed.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction>Continue</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+
                       <Button size='sm'>Checkout</Button>
                     </div>
                   </div>
