@@ -4,10 +4,6 @@
   "private": true,
   "dependencies": {
     "@changesets/cli": "^2.26.1",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.11",
-    "@mui/material": "^5.11.2",
     "@radix-ui/react-alert-dialog": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.3",
     "@radix-ui/react-label": "^2.0.1",

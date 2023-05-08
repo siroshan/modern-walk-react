@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IProduct } from '../../../../models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
-import Stack from '@mui/material/Stack';
 import { SectionLayout } from '../../../Layouts/SectionLayout';
 import { CategoryCard } from '../../../Molucules/CategoryCard';
 import { categories } from '../../../../config/config';
