@@ -7,7 +7,7 @@ const AlertDialogFooter = ({
 }: HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse bg-slate-100 p-6 sm:flex-row sm:justify-end sm:space-x-2',
+      'bg-background-elephant-contrast flex flex-col-reverse p-6 sm:flex-row sm:justify-end sm:space-x-2',
       className
     )}
     {...props}
