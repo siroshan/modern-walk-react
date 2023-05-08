@@ -11,12 +11,14 @@ export const buttonVariants = cva(
         default:
           'bg-primary text-primary-foreground hover:bg-primary-hover hover:shadow active:bg-primary-active disabled:bg-primary-disabled focus:bg-primary-selected focus:shadow',
         outline:
-          'border border-primary text-primary border-input hover:bg-primary-disabled hover:border-primary-hover hover:text-primary-hover focus:bg-primary-disabled-selected focus:text-primary-selected',
+          'border border-primary text-primary hover:bg-primary-disabled hover:border-primary-hover hover:text-primary-hover focus:bg-primary-disabled-selected focus:text-primary-selected',
+          dotted:
+          'border border-dashed border-primary text-primary hover:bg-primary-disabled hover:border-primary-hover hover:text-primary-hover focus:bg-primary-disabled-selected focus:text-primary-selected',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
       },
       size: {
         default: 'pt-3.5 pb-2.5 px-6',
-        sm: 'py-3.5 px-6',
+        sm: 'py-2 px-4',
         lg: 'py-3.5 px-6',
       },
     },

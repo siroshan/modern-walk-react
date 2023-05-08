@@ -15,10 +15,10 @@ const HomePage = () => {
   const { toast } = useToast();
   const [products, setProducts] = useState<IProduct[]>([]);
 
-  const { isLoading, error, data } = useQuery(
-    'products',
-    ProductService.getProducts
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: 'products',
+    queryFn: () => ProductService.getProducts,
+  });
 
   useEffect(() => {
     if (!isLoading && Array.isArray(data)) {
@@ -31,16 +31,16 @@ const HomePage = () => {
     }
   }, [isLoading, data]);
 
-  useEffect(()=> {
-    if(error) {
+  useEffect(() => {
+    if (error) {
       toast({
-        variant: "destructive",
-        title: "Error",
-        description: new CustomError(error).message ,
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
-      })
+        variant: 'destructive',
+        title: 'Error',
+        description: new CustomError(error).message,
+        action: <ToastAction altText='Try again'>Try again</ToastAction>,
+      });
     }
-  },[error, isLoading])
+  }, [error, isLoading]);
 
   return (
     <>
@@ -49,7 +49,7 @@ const HomePage = () => {
           <ProductCardContainer products={products} isLoading={isLoading} />
         </SectionLayout>
         <SectionLayout heading='Categories'>
-          <div className='w-full grid grid-cols-2 items-center justify-center gap-5'>
+          <div className='grid w-full grid-cols-2 items-center justify-center gap-5'>
             {categories.map((category, i) => (
               <CategoryCard key={i} category={category} />
             ))}

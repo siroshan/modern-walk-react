@@ -1,9 +1,10 @@
 import { IProduct } from '../../models/Product';
 import { axiosProductInstance } from '../api';
+import { QueryKey } from 'react-query';
 
-export const getProducts = async (): Promise<IProduct[]> => {
+export const getProducts = async (limit = 20): Promise<IProduct[]> => {
   try {
-    const { data } = await axiosProductInstance.get<IProduct[]>('products');
+    const { data } = await axiosProductInstance.get<IProduct[]>(`products?limit=${limit}`);
     return data;
   } catch (err) {
     console.log('error', err);
