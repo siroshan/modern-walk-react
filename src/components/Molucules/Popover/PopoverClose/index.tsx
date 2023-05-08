@@ -1,1 +1,1 @@
-export { default as PopoverClose } from './PopoverClose';
+export { default as PopoverClose } from './PopoverClose.component';

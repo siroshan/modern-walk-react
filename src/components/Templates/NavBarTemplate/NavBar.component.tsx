@@ -11,6 +11,7 @@ import { Typography } from '../../Atoms/Typography';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../services/product';
 import { PopoverClose } from '../../Molucules/Popover/PopoverClose';
+import { CartProductCard } from '../../Molucules/CartProductCard';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
@@ -54,17 +55,7 @@ const NavBarTemplate = () => {
 
                   <div>
                     {data?.map((product, i) => (
-                      <div key={product.id} className='w-64 p-2'>
-                        <div className='flex'>
-                          <img
-                            height={50}
-                            width={50}
-                            src={product.image}
-                            alt={product.title}
-                          />
-                          <div className='ml-4'>{product.title}</div>
-                        </div>
-                      </div>
+                      <CartProductCard product={product} />
                     ))}
                   </div>
                   <div className='rounded-b-2xl bg-gray-50 p-2'>
