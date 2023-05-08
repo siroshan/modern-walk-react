@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, UserCog, LogOut } from 'lucide-react';
 import { Button } from '../../../components/Atoms/Button';
 import { useUser } from '../../../context/user';
-import { PopoverContent } from '../../Organisms/Popover/PopoverContent';
-import { Popover } from '../../Organisms/Popover/Popover';
-import { PopoverTrigger } from '../../Organisms/Popover/PopoverTrigger';
+import { PopoverContent } from '../../Molucules/Popover/PopoverContent';
+import { Popover } from '../../Organisms/Popover';
+import { PopoverTrigger } from '../../Molucules/Popover/PopoverTrigger';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
