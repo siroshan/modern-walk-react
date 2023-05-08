@@ -63,7 +63,7 @@ const NavBarTemplate = () => {
 
                   <div>
                     {data?.map((product, i) => (
-                      <CartProductCard product={product} />
+                      <CartProductCard key={product.id} product={product} />
                     ))}
                   </div>
                   <div className='rounded-b-2xl bg-gray-50 p-2'>
@@ -78,13 +78,22 @@ const NavBarTemplate = () => {
                           <AlertDialogHeader>
                             <AlertDialogTitle>Clear Cart</AlertDialogTitle>
                             <AlertDialogDescription>
-                              All items iin your cart will be removed! Please
+                              All items in your cart will be removed! Please
                               confirm to proceed.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction>Continue</AlertDialogAction>
+                            <AlertDialogCancel>
+                              <Button
+                                variant='danger'
+                                className='border border-danger bg-transparent text-danger'
+                              >
+                                Cancel
+                              </Button>
+                            </AlertDialogCancel>
+                            <AlertDialogAction>
+                              <Button variant='danger'>Confirm</Button>
+                            </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
                       </AlertDialog>
