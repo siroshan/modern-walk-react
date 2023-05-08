@@ -67,7 +67,7 @@ const NavBarTemplate = () => {
                       </div>
                     ))}
                   </div>
-                  <div className='rounded-b-md bg-gray-50 p-2'>
+                  <div className='rounded-b-2xl bg-gray-50 p-2'>
                     <div className='grid grid-cols-2 gap-4'>
                       <Button variant='dotted' size='sm'>
                         Clear
