@@ -66,7 +66,7 @@ const NavBarTemplate = () => {
                       <CartProductCard key={product.id} product={product} />
                     ))}
                   </div>
-                  <div className='rounded-b-2xl bg-gray-50 p-2'>
+                  <div className='bg-background-elephant-contrast rounded-b-2xl p-2'>
                     <div className='grid grid-cols-2 gap-4'>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
