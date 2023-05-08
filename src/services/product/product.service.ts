@@ -4,7 +4,9 @@ import { QueryKey } from 'react-query';
 
 export const getProducts = async (limit = 20): Promise<IProduct[]> => {
   try {
-    const { data } = await axiosProductInstance.get<IProduct[]>(`products?limit=${limit}`);
+    const { data } = await axiosProductInstance.get<IProduct[]>(
+      `products?limit=${limit}`
+    );
     return data;
   } catch (err) {
     console.log('error', err);

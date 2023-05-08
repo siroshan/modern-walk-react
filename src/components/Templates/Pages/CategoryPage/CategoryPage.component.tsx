@@ -18,8 +18,9 @@ const CategoryPage = () => {
   const category = categories.find((category) => category.link === cat);
   const [products, setProducts] = useState<IProduct[]>([]);
 
-  const { isLoading, error, data } = useQuery('products', () =>
-    ProductService.getProductsByCategory(category?.title || '')
+  const { isLoading, error, data } = useQuery(
+    ['products', { category: category?.title }],
+    () => ProductService.getProductsByCategory(category?.title || '')
   );
 
   useEffect(() => {
@@ -28,16 +29,16 @@ const CategoryPage = () => {
     }
   }, [isLoading, data]);
 
-  useEffect(()=> {
-    if(error) {
+  useEffect(() => {
+    if (error) {
       toast({
-        variant: "destructive",
-        title: "Error",
-        description: new CustomError(error).message ,
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
-      })
+        variant: 'destructive',
+        title: 'Error',
+        description: new CustomError(error).message,
+        action: <ToastAction altText='Try again'>Try again</ToastAction>,
+      });
     }
-  },[error, isLoading])
+  }, [error, isLoading]);
 
   return (
     <>

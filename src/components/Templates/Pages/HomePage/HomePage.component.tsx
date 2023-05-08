@@ -16,8 +16,8 @@ const HomePage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const { isLoading, error, data } = useQuery({
-    queryKey: 'products',
-    queryFn: () => ProductService.getProducts,
+    queryKey: ['products', { limit: 20 }],
+    queryFn: () => ProductService.getProducts(20),
   });
 
   useEffect(() => {
