@@ -1,25 +1,26 @@
-import { Logo } from '../../Molucules/Logo';
-import { NavBar } from '../../Organisms/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, UserCog, LogOut, ShoppingCart, X } from 'lucide-react';
-import { Button } from '../../../components/Atoms/Button';
+import { Button } from '../../MWUI/Atoms/Button';
 import { useUser } from '../../../context/user';
-import { PopoverContent } from '../../Molucules/Popover/PopoverContent';
-import { Popover } from '../../Organisms/Popover';
-import { PopoverTrigger } from '../../Molucules/Popover/PopoverTrigger';
+
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../services/product';
-import { PopoverClose } from '../../Molucules/Popover/PopoverClose';
-import { CartProductCard } from '../../Molucules/CartProductCard';
-import { AlertDialogHeader } from '../../Molucules/AlertDialog/AlertDialogHeader';
-import { AlertDialog } from '../../Molucules/AlertDialog/AlertDialog';
-import AlertDialogTrigger from '../../Molucules/AlertDialog/AlertDialogTrigger/AlertDialogTrigger.component';
-import { AlertDialogContent } from '../../Molucules/AlertDialog/AlertDialogContent';
-import { AlertDialogTitle } from '../../Molucules/AlertDialog/AlertDialogTitle';
-import { AlertDialogDescription } from '../../Molucules/AlertDialog/AlertDialogDescription';
-import { AlertDialogCancel } from '../../Molucules/AlertDialog/AlertDialogCancel';
-import { AlertDialogAction } from '../../Molucules/AlertDialog/AlertDialogAction';
-import { AlertDialogFooter } from '../../Molucules/AlertDialog/AlertDialogFooter';
+import { NavBar } from '../../MWUI/Organisms/NavBar';
+import { Logo } from '../../MWUI/Molucules/Logo';
+import { Popover } from '../../MWUI/Organisms/Popover';
+import { PopoverTrigger } from '../../MWUI/Molucules/Popover/PopoverTrigger';
+import { PopoverContent } from '../../MWUI/Molucules/Popover/PopoverContent';
+import { PopoverClose } from '../../MWUI/Molucules/Popover/PopoverClose';
+import { CartProductCard } from '../../MWUI/Molucules/CartProductCard';
+import { AlertDialog } from '../../MWUI/Molucules/AlertDialog/AlertDialog';
+import AlertDialogTrigger from '../../MWUI/Molucules/AlertDialog/AlertDialogTrigger/AlertDialogTrigger.component';
+import { AlertDialogContent } from '../../MWUI/Molucules/AlertDialog/AlertDialogContent';
+import { AlertDialogHeader } from '../../MWUI/Molucules/AlertDialog/AlertDialogHeader';
+import { AlertDialogTitle } from '../../MWUI/Molucules/AlertDialog/AlertDialogTitle';
+import { AlertDialogDescription } from '../../MWUI/Molucules/AlertDialog/AlertDialogDescription';
+import { AlertDialogFooter } from '../../MWUI/Molucules/AlertDialog/AlertDialogFooter';
+import { AlertDialogCancel } from '../../MWUI/Molucules/AlertDialog/AlertDialogCancel';
+import { AlertDialogAction } from '../../MWUI/Molucules/AlertDialog/AlertDialogAction';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const NavBarTemplate = () => {
                       <CartProductCard key={product.id} product={product} />
                     ))}
                   </div>
-                  <div className='bg-background-elephant-contrast rounded-b-2xl p-2'>
+                  <div className='rounded-b-2xl bg-background-elephant-contrast p-2'>
                     <div className='grid grid-cols-2 gap-4'>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import ProductCard from '../../Molucules/ProductCard/ProductCard.component';
-import { ProductCardSkeleton } from '../../Molucules/ProductCardLoadingSkeleton';
+import ProductCard from '../../MWUI/Molucules/ProductCard/ProductCard.component';
+import { ProductCardSkeleton } from '../../MWUI/Molucules/ProductCardLoadingSkeleton';
 import { ProductCardContainerProps } from './ProductCardContainer.type';
 
 const ProductCardContainer: FC<ProductCardContainerProps> = ({

@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../../../services/user';
 import { IUser } from '../../../../models/User';
 import { useUser } from '../../../../context/user';
-import { ToastAction } from '../../../Molucules/Toast/ToastAction';
-import { Label } from '../../../Atoms/Label';
-import { Input } from '../../../Molucules/Input';
-import { PasswordInput } from '../../../Molucules/PasswordInput';
-import { Button } from '../../../Atoms/Button';
-import { Checkbox } from '../../../Molucules/Checkbox';
-import { Typography } from '../../../Atoms/Typography';
-import { useToast } from '../../../Organisms/Toast/Toaster';
+import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
+import { Label } from '../../../MWUI/Atoms/Label';
+import { Input } from '../../../MWUI/Molucules/Input';
+import { PasswordInput } from '../../../MWUI/Molucules/PasswordInput';
+import { Button } from '../../../MWUI/Atoms/Button';
+import { Checkbox } from '../../../MWUI/Molucules/Checkbox';
+import { Typography } from '../../../MWUI/Atoms/Typography';
+import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
 
 const SignUpPage = () => {
   const navigate = useNavigate();

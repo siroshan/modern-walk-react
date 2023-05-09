@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { IProduct } from '../../../../models/Product';
 import { ProductCardContainer } from '../../ProductCardConatiner';
 import { SectionLayout } from '../../../Layouts/SectionLayout';
-import { CategoryCard } from '../../../Molucules/CategoryCard';
 import { categories } from '../../../../config/config';
 import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
 import { useQuery } from 'react-query';
 import { ProductService } from '../../../../services/product';
-import { ToastAction } from '../../../Molucules/Toast/ToastAction';
 import { CustomError } from '../../../../services/api';
-import { useToast } from '../../../Organisms/Toast/Toaster';
+import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
+import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
+import { CategoryCard } from '../../../MWUI/Molucules/CategoryCard';
 
 const HomePage = () => {
   const { toast } = useToast();
