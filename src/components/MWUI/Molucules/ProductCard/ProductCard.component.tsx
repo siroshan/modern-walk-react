@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import { IProduct } from '../../../../models/Product';
+import { Button } from '../../Atoms/Button';
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
-  const bgColor = product.category === "men's clothing" ? 'bg-[#2BD9AF]' : 'bg-[#FF5E84]';
+  const bgColor =
+    product.category === "men's clothing" ? 'bg-[#2BD9AF]' : 'bg-[#FF5E84]';
 
   return (
     <div
@@ -19,7 +21,7 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
         </div>
         <div className='w-full'>
           <img
-            className='mx-auto h-auto max-h-32 w-full object-contain'
+            className='mx-auto h-auto max-h-28 w-full object-contain'
             src={product.image}
             alt='product'
             property='image'
@@ -35,10 +37,11 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
           </div>
           <div
             property='description'
-            className='line-clamp-4 max-w-[200px] text-ellipsis text-center text-sm'
+            className='mb-2 line-clamp-4 max-w-[200px] text-ellipsis text-center text-sm'
           >
             {product.description}
           </div>
+          <Button size='sm'>Add to Cart</Button>
         </div>
       </div>
     </div>
