@@ -1,10 +1,12 @@
 import { FC } from 'react';
 import { IProduct } from '../../../../models/Product';
 import { Button } from '../../Atoms/Button';
+import { useCart } from '../../../../context/cart';
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
   const bgColor =
     product.category === "men's clothing" ? 'bg-[#2BD9AF]' : 'bg-[#FF5E84]';
+  const { addToCart } = useCart();
 
   return (
     <div
@@ -41,7 +43,9 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
           >
             {product.description}
           </div>
-          <Button size='sm'>Add to Cart</Button>
+          <Button size='sm' onClick={() => addToCart({ product, qty: 1 })}>
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>

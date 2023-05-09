@@ -6,20 +6,23 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/user';
 import { Toaster } from './components/MWUI/Organisms/Toast/Toaster';
+import { CartProvider } from './context/cart';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 // Create a client
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <UserProvider>
-          <App />
-          <Toaster />
+          <CartProvider>
+            <App />
+            <Toaster />
+          </CartProvider>
         </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>

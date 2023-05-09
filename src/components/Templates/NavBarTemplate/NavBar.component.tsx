@@ -2,9 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, UserCog, LogOut, ShoppingCart, X } from 'lucide-react';
 import { Button } from '../../MWUI/Atoms/Button';
 import { useUser } from '../../../context/user';
-
-import { useQuery } from 'react-query';
-import { ProductService } from '../../../services/product';
 import { NavBar } from '../../MWUI/Organisms/NavBar';
 import { Logo } from '../../MWUI/Molucules/Logo';
 import { Popover } from '../../MWUI/Organisms/Popover';
@@ -21,15 +18,12 @@ import { AlertDialogDescription } from '../../MWUI/Molucules/AlertDialog/AlertDi
 import { AlertDialogFooter } from '../../MWUI/Molucules/AlertDialog/AlertDialogFooter';
 import { AlertDialogCancel } from '../../MWUI/Molucules/AlertDialog/AlertDialogCancel';
 import { AlertDialogAction } from '../../MWUI/Molucules/AlertDialog/AlertDialogAction';
+import { useCart } from '../../../context/cart';
 
 const NavBarTemplate = () => {
   const navigate = useNavigate();
   const UserCTX = useUser();
-  const limit = 5;
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['products', { limit }],
-    queryFn: () => ProductService.getProducts(limit),
-  });
+  const { cartItems, clearCart } = useCart();
 
   const handleLogOut = () => {
     UserCTX.signOut();
@@ -63,9 +57,16 @@ const NavBarTemplate = () => {
                   </div>
 
                   <div>
-                    {data?.map((product, i) => (
-                      <CartProductCard key={product.id} product={product} />
-                    ))}
+                    {cartItems.length > 0 &&
+                      cartItems.map((cartItem, i) => (
+                        <CartProductCard
+                          key={cartItem.product.id}
+                          product={cartItem.product}
+                        />
+                      ))}
+                    {cartItems.length === 0 && (
+                      <div className='p-4 text-center'>Empty cart</div>
+                    )}
                   </div>
                   <div className='rounded-b-2xl bg-background-elephant-contrast p-2'>
                     <div className='grid grid-cols-2 gap-4'>
@@ -93,7 +94,9 @@ const NavBarTemplate = () => {
                               </Button>
                             </AlertDialogCancel>
                             <AlertDialogAction>
-                              <Button variant='danger'>Confirm</Button>
+                              <Button variant='danger' onClick={clearCart}>
+                                Confirm
+                              </Button>
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
