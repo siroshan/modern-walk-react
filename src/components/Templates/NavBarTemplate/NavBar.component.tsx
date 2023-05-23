@@ -10,7 +10,7 @@ import { PopoverContent } from '../../MWUI/Molucules/Popover/PopoverContent';
 import { PopoverClose } from '../../MWUI/Molucules/Popover/PopoverClose';
 import { CartProductCard } from '../../MWUI/Molucules/CartProductCard';
 import { AlertDialog } from '../../MWUI/Molucules/AlertDialog/AlertDialog';
-import AlertDialogTrigger from '../../MWUI/Molucules/AlertDialog/AlertDialogTrigger/AlertDialogTrigger.component';
+import { AlertDialogTrigger } from '../../MWUI/Molucules/AlertDialog/AlertDialogTrigger';
 import { AlertDialogContent } from '../../MWUI/Molucules/AlertDialog/AlertDialogContent';
 import { AlertDialogHeader } from '../../MWUI/Molucules/AlertDialog/AlertDialogHeader';
 import { AlertDialogTitle } from '../../MWUI/Molucules/AlertDialog/AlertDialogTitle';
