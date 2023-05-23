@@ -47,7 +47,7 @@ const NavBarTemplate = () => {
                   <span className='sr-only'>Open User Cart</span>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent align='end' className='p-0'>
+              <PopoverContent align='end' className='p-0 max-w-md'>
                 <>
                   <div className='flex flex-row items-center justify-between p-2'>
                     <div className='p-2 font-bold'>Cart</div>
