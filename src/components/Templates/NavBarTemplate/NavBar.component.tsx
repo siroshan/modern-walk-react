@@ -94,7 +94,7 @@ const NavBarTemplate = () => {
                               </Button>
                             </AlertDialogCancel>
                             <AlertDialogAction>
-                              <Button variant='danger' onClick={clearCart}>
+                              <Button variant='dangerOutline' onClick={clearCart}>
                                 Confirm
                               </Button>
                             </AlertDialogAction>

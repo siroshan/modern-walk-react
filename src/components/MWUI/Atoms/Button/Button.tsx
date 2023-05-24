@@ -9,14 +9,16 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground hover:bg-primary-hover hover:shadow active:bg-primary-active disabled:bg-primary-disabled focus:bg-primary-selected focus:shadow',
+          'active:bg-primary-active bg-primary text-primary-foreground hover:bg-primary-hover hover:shadow focus:shadow disabled:bg-primary-disabled-selected',
         outline:
-          'border border-primary text-primary hover:bg-primary-disabled hover:border-primary-hover hover:text-primary-hover focus:bg-primary-disabled-selected focus:text-primary-selected',
+          'border border-primary text-primary hover:bg-primary-disabled-selected hover:text-primary-hover hover:border-primary-hover active:text-primary-selected active:boder-primary-selected active:bg-primary-disabled-selected',
         dotted:
-          'border border-dashed border-primary text-primary hover:bg-primary-disabled hover:border-primary-hover hover:text-primary-hover focus:bg-primary-disabled-selected focus:text-primary-selected',
+          'border border-dashed border-primary text-primary hover:bg-primary-disabled-selected hover:border-primary-hover hover:text-primary-hover active:text-primary-selected',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         danger:
           'bg-danger text-primary-foreground hover:bg-danger-hover hover:shadow active:bg-danger-active disabled:bg-danger-disabled focus:bg-danger-selected focus:shadow',
+        dangerOutline:
+          'bg-transparent text-danger border border-danger hover:bg-danger-disabled hover:shadow active:bg-danger-glow disabled:bg-danger-disabled focus:bg-danger-selected focus:shadow',
       },
       size: {
         default: 'pt-3.5 pb-2.5 px-6',
