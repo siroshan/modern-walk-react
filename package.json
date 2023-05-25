@@ -32,17 +32,28 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@electron/remote": "^2.0.9",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^24.3.1",
+    "electron-is-dev": "^2.0.0",
+    "postcss": "^8.4.23",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",
     "tailwindcss": "^3.3.1",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.23"
+    "wait-on": "^7.0.1"
   },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
+    "electron:build": "npm build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "electron ."
   },
   "eslintConfig": {
     "extends": [
