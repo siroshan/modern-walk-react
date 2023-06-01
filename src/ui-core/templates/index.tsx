@@ -1,3 +1,3 @@
 export * from './NavBarTemplate'
-export * from './Pages/index'
+export * from '../pages/index'
 export * from './ProductCardConatiner'

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { SectionLayoutProps } from './SectionLayout.type';
-import { Typography } from '../../MWUI/Atoms/Typography';
+import { Typography } from '../../components/Atoms/Typography';
 
 const SectionLayout: FC<SectionLayoutProps> = ({ children, heading }) => {
   return (

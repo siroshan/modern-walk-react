@@ -1,19 +1,19 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserService } from '../../../../services/user';
-import { IUser } from '../../../../models/User';
-import { useUser } from '../../../../context/user';
+import { UserService } from '../../../services/user';
+import { IUser } from '../../../models/User';
+import { useUser } from '../../../context/user';
 import { useEffect, useState } from 'react';
-import { CustomError } from '../../../../services/api';
-import { Label } from '../../../MWUI/Atoms/Label';
-import { Button } from '../../../MWUI/Atoms/Button';
-import { Typography } from '../../../MWUI/Atoms/Typography';
-import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
-import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
-import { Input } from '../../../MWUI/Molucules/Input';
-import { Checkbox } from '../../../MWUI/Molucules/Checkbox';
-import { PasswordInput } from '../../../MWUI/Molucules/PasswordInput';
+import { CustomError } from '../../../services/api';
+import { Label } from '../../components/Atoms/Label';
+import { Button } from '../../components/Atoms/Button';
+import { Typography } from '../../components/Atoms/Typography';
+import { useToast } from '../../components/Organisms/Toast/Toaster';
+import { ToastAction } from '../../components/Molucules/Toast/ToastAction';
+import { Input } from '../../components/Molucules/Input';
+import { Checkbox } from '../../components/Molucules/Checkbox';
+import { PasswordInput } from '../../components/Molucules/PasswordInput';
 
 const SignInPage = () => {
   const { toast } = useToast();

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { IProduct } from '../../../../models/Product';
-import { ProductCardContainer } from '../../ProductCardConatiner';
-import { SectionLayout } from '../../../Layouts/SectionLayout';
-import { categories } from '../../../../config/config';
-import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
+import { IProduct } from '../../../models/Product';
+import { ProductCardContainer } from '../../templates/ProductCardConatiner';
+import { SectionLayout } from '../../layout/SectionLayout';
+import { categories } from '../../../config/config';
+import { MaxWidthLayout } from '../../layout/MaxWidthLayout';
 import { useQuery } from 'react-query';
-import { ProductService } from '../../../../services/product';
-import { CustomError } from '../../../../services/api';
-import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
-import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
-import { CategoryCard } from '../../../MWUI/Molucules/CategoryCard';
+import { ProductService } from '../../../services/product';
+import { CustomError } from '../../../services/api';
+import { useToast } from '../../components/Organisms/Toast/Toaster';
+import { ToastAction } from '../../components/Molucules/Toast/ToastAction';
+import { CategoryCard } from '../../components/Molucules/CategoryCard';
 
 const HomePage = () => {
   const { toast } = useToast();

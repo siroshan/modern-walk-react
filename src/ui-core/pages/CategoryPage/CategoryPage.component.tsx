@@ -1,16 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { categories } from '../../../../config/config';
-import { IProduct } from '../../../../models/Product';
-import { ProductCardContainer } from '../../ProductCardConatiner';
-import { SectionLayout } from '../../../Layouts/SectionLayout';
-import { MaxWidthLayout } from '../../../Layouts/MaxWidthLayout';
-import { ProductService } from '../../../../services/product';
+import { categories } from '../../../config/config';
+import { IProduct } from '../../../models/Product';
+import { ProductCardContainer } from '../../templates/ProductCardConatiner';
+import { SectionLayout } from '../../layout/SectionLayout';
+import { MaxWidthLayout } from '../../layout/MaxWidthLayout';
+import { ProductService } from '../../../services/product';
 import { useQuery } from 'react-query';
-import { CustomError } from '../../../../services/api';
-import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
-import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
+import { CustomError } from '../../../services/api';
+import { useToast } from '../../components/Organisms/Toast/Toaster';
+import { ToastAction } from '../../components/Molucules/Toast/ToastAction';
 
 const CategoryPage = () => {
   const { toast } = useToast();

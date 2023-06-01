@@ -2,17 +2,17 @@ import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserService } from '../../../../services/user';
-import { IUser } from '../../../../models/User';
-import { useUser } from '../../../../context/user';
-import { ToastAction } from '../../../MWUI/Molucules/Toast/ToastAction';
-import { Label } from '../../../MWUI/Atoms/Label';
-import { Input } from '../../../MWUI/Molucules/Input';
-import { PasswordInput } from '../../../MWUI/Molucules/PasswordInput';
-import { Button } from '../../../MWUI/Atoms/Button';
-import { Checkbox } from '../../../MWUI/Molucules/Checkbox';
-import { Typography } from '../../../MWUI/Atoms/Typography';
-import { useToast } from '../../../MWUI/Organisms/Toast/Toaster';
+import { UserService } from '../../../services/user';
+import { IUser } from '../../../models/User';
+import { useUser } from '../../../context/user';
+import { ToastAction } from '../../components/Molucules/Toast/ToastAction';
+import { Label } from '../../components/Atoms/Label';
+import { Input } from '../../components/Molucules/Input';
+import { PasswordInput } from '../../components/Molucules/PasswordInput';
+import { Button } from '../../components/Atoms/Button';
+import { Checkbox } from '../../components/Molucules/Checkbox';
+import { Typography } from '../../components/Atoms/Typography';
+import { useToast } from '../../components/Organisms/Toast/Toaster';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
